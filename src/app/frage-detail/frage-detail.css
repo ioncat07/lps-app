@@ -1,0 +1,124 @@
+.fragenummer {
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.fragetext {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.hinweis {
+  margin-bottom: 12px;
+  color: #92400e;
+}
+
+.antwortliste {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.antwortliste li {
+  margin-bottom: 10px;
+}
+
+.antwort-button {
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #bbb;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+.antwort-button:hover {
+  background: #eef2ff;
+}
+
+.antwort-button.ausgewaehlt {
+  background: #dbeafe;
+  border-color: #3b82f6;
+}
+
+.antwort-button.richtig {
+  background: #dcfce7;
+  border-color: #16a34a;
+}
+
+.antwort-button.falsch {
+  background: #fee2e2;
+  border-color: #dc2626;
+}
+
+.pruefbereich {
+  margin: 20px 0;
+}
+
+.ergebnis {
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.richtig-text {
+  color: #166534;
+}
+
+.falsch-text {
+  color: #b91c1c;
+}
+
+.erklaerung {
+  margin: 20px 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  background: #f9fafb;
+}
+
+.navigation {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.navigation button,
+.pruefbereich button {
+  padding: 10px 14px;
+  border: 1px solid #999;
+  background: #f3f4f6;
+  cursor: pointer;
+}
+
+.modus-hinweis {
+  margin-bottom: 14px;
+  padding: 10px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+}
+
+.schriftlich-bereich {
+  margin-bottom: 20px;
+}
+
+.schriftlich-input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid #bbb;
+}
+
+.loesung-text {
+  margin-top: 12px;
+  padding: 10px;
+  background: #dcfce7;
+  border: 1px solid #16a34a;
+}
+
+.modus-hinweis {
+  margin-bottom: 14px;
+  padding: 10px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+}

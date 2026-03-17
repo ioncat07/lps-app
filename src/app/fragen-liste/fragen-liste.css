@@ -1,0 +1,176 @@
+.seite {
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.modus-leiste {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.modus-leiste button {
+  padding: 10px 16px;
+  border: 1px solid #999;
+  background: #f3f3f3;
+  cursor: pointer;
+}
+
+.modus-leiste button.aktiv {
+  background: #dbeafe;
+  border-color: #3b82f6;
+  font-weight: bold;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.liste,
+.detail {
+  border: 1px solid #ccc;
+  padding: 16px;
+  background: #fff;
+}
+
+.liste ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.liste li {
+  margin-bottom: 8px;
+}
+
+.frage-button {
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #bbb;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+.frage-button:hover {
+  background: #f1f5f9;
+}
+
+.frage-button.aktiv {
+  background: #e0f2fe;
+  border-color: #0284c7;
+}
+
+.fehler {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+.statusleiste {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.pruefungs-meldung {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #dc2626;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+.pruefungs-ergebnis {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #16a34a;
+  background: #dcfce7;
+  color: #166534;
+  font-weight: bold;
+}
+
+.zuruecksetzen-button {
+  margin-left: auto;
+  padding: 10px 16px;
+  border: 1px solid #999;
+  background: #fef3c7;
+  cursor: pointer;
+}
+
+.filter-leiste {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.filter-leiste button {
+  padding: 10px 16px;
+  border: 1px solid #999;
+  background: #f3f3f3;
+  cursor: pointer;
+}
+
+.filter-leiste button.aktiv {
+  background: #dbeafe;
+  border-color: #3b82f6;
+  font-weight: bold;
+}
+
+.pruefungs-info {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.fortschritt-container {
+  margin-bottom: 20px;
+}
+
+.fortschritt-text {
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.fortschritt-leiste {
+  width: 100%;
+  height: 18px;
+  background: #e5e7eb;
+  border: 1px solid #cbd5e1;
+  overflow: hidden;
+}
+
+.fortschritt-wert {
+  height: 100%;
+  background: #3b82f6;
+}
+
+.pruefungs-ergebnis {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #16a34a;
+  background: #dcfce7;
+  color: #166534;
+  font-weight: bold;
+}
+
+.vollpruefung-aktionen {
+  margin-bottom: 16px;
+}
+
+.beenden-button {
+  padding: 10px 16px;
+  border: 1px solid #991b1b;
+  background: #fecaca;
+  color: #7f1d1d;
+  font-weight: bold;
+  cursor: pointer;
+}

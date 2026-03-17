@@ -1,0 +1,1329 @@
+[
+{
+"id":1,
+"typ":"multiple-choice",
+"frageText":"Which type of file system is created by mkfs when it is executed with the block device name only and without any additional parameters?",
+"antworten":["XFS","VFAT","ext2","ext3","ext4"],
+"loesung":"C"
+},
+{
+"id":2,
+"typ":"multiple-choice",
+"frageText":"Which umask value ensures that new directories can be read, written and listed by their owning user, read and listed by their owning group and are not accessible at all for everyone else?",
+"antworten":["0750","0027","0036","7640","0029"],
+"loesung":"B"
+},
+{
+"id":3,
+"typ":"multiple-choice",
+"frageText":"Which command changes the number of days before the ext3 filesystem on /dev/sda1 has to run through a full filesystem check while booting?",
+"antworten":["tune2fs -d 200 /dev/sda1","tune2fs -i 200 /dev/sda1","tune2fs -c 200 /dev/sda1","tune2fs -n 200 /dev/sda1","tune2fs --days 200 /dev/sda1"],
+"loesung":"B"
+},
+{
+"id":4,
+"typ":"multiple-choice",
+"frageText":"Which is the default percentage of reserved space for the root user on new ext4 filesystems?",
+"antworten":["10%","3%","15%","0%","5%"],
+"loesung":"E"
+},
+{
+"id":5,
+"typ":"multiple-choice",
+"frageText":"Which of the following is true when a file system, which is neither listed in /etc/fstab nor known to system, is mounted manually?",
+"antworten":[
+"systemd ignores manual mounts",
+"systemctl mountsync can create a mount unit",
+"systemd automatically generates a mount unit",
+"systemd unmounts it automatically",
+"systemctl unmount must be used"
+],
+"loesung":"C"
+},
+{
+"id":6,
+"typ":"schriftlich",
+"frageText":"Which program updates the database that is used by the locate command?",
+"loesung":"updatedb"
+},
+{
+"id":7,
+"typ":"multiple-choice",
+"frageText":"What does the command mount --bind do?",
+"antworten":[
+"It makes the contents of one directory available in another directory",
+"It mounts all filesystems",
+"It mounts user filesystems",
+"It mounts filesystems from fstab",
+"It mounts files permanently"
+],
+"loesung":"A"
+},
+{
+"id":8,
+"typ":"multiple-choice",
+"frageText":"How would a new file named c.txt be created with the same inode number as a.txt?",
+"antworten":[
+"ln -h a.txt c.txt",
+"ln c.txt a.txt",
+"ln a.txt c.txt",
+"ln -f c.txt a.txt",
+"ln -i 525385 c.txt"
+],
+"loesung":"C"
+},
+{
+"id":9,
+"typ":"multiple-choice",
+"frageText":"Which command ensures new files created within the directory sales are owned by the group sales? (Choose two)",
+"antworten":[
+"chmod g+s sales",
+"setpol -R newgroup=sales sales",
+"chgrp -p sales sales",
+"chown --persistent *.sales sales",
+"chmod 2775 sales"
+],
+"loesung":"AE"
+},
+{
+"id":10,
+"typ":"multiple-choice",
+"frageText":"Which commands display all currently mounted filesystems? (Choose two)",
+"antworten":[
+"cat /proc/self/mounts",
+"free",
+"lsmounts",
+"mount",
+"cat /proc/filesystems"
+],
+"loesung":"AD"
+},
+{
+"id":11,
+"typ":"schriftlich",
+"frageText":"Which command displays the current disk space usage for all mounted file systems?",
+"loesung":"df"
+},
+{
+"id":12,
+"typ":"multiple-choice",
+"frageText":"Which chown command changes the ownership to dave and group to staff on data.txt?",
+"antworten":[
+"chown dave/staff data.txt",
+"chown -u dave -g staff data.txt",
+"chown --user dave --group staff data.txt",
+"chown dave+staff data.txt",
+"chown dave:staff data.txt"
+],
+"loesung":"E"
+},
+{
+"id":13,
+"typ":"multiple-choice",
+"frageText":"When considering the use of hard links, what are valid reasons not to use hard links?",
+"antworten":[
+"Not available on Linux",
+"Each hard link has different permissions",
+"Cannot point to files on another filesystem",
+"suln must be installed",
+"Creates file copies"
+],
+"loesung":"C"
+},
+{
+"id":14,
+"typ":"multiple-choice",
+"frageText":"In compliance with FHS, where are man pages found?",
+"antworten":[
+"/opt/man/",
+"/usr/doc/",
+"/usr/share/man/",
+"/var/pkg/man",
+"/var/man/"
+],
+"loesung":"C"
+},
+{
+"id":15,
+"typ":"schriftlich",
+"frageText":"Which file in /proc lists parameters passed from the bootloader to the kernel?",
+"loesung":"cmdline"
+},
+{
+"id":16,
+"typ":"multiple-choice",
+"frageText":"What is the process ID number of the init process on a System V system?",
+"antworten":["-1","0","1","Different each reboot","Current run level"],
+"loesung":"C"
+},
+{
+"id":17,
+"typ":"multiple-choice",
+"frageText":"Which daemon handles power management events?",
+"antworten":["acpid","batteryd","pwrmgntd","psd","inetd"],
+"loesung":"A"
+},
+{
+"id":18,
+"typ":"multiple-choice",
+"frageText":"Which statements are true about BIOS boot sequence? (Choose two)",
+"antworten":[
+"Parts can be configured in BIOS",
+"Linux doesn't need BIOS",
+"Boot starts only if disk works",
+"BIOS initiates boot after power on",
+"BIOS loads drivers from disk"
+],
+"loesung":"AD"
+},
+{
+"id":19,
+"typ":"multiple-choice",
+"frageText":"What is true regarding UEFI firmware? (Choose two)",
+"antworten":[
+"It can read partition tables",
+"It can read file systems",
+"It stores config in /boot",
+"It is in GPT metadata",
+"It loads from fixed disk position"
+],
+"loesung":"AB"
+},
+{
+"id":20,
+"typ":"multiple-choice",
+"frageText":"Which action prevents a faulty kernel module from loading automatically?",
+"antworten":[
+"lsmod remove",
+"modinfo",
+"modprobe remove",
+"Add blacklist to /etc/modprobe.d/blacklist.conf",
+"Delete module"
+],
+"loesung":"D"
+},
+{
+"id":21,
+"typ":"multiple-choice",
+"frageText":"When is the content of the kernel ring buffer reset? (Choose two)",
+"antworten":[
+"When dmesg --clear is executed",
+"When dmesg is executed",
+"After 15 minutes",
+"When a kernel module loads",
+"When the system reboots"
+],
+"loesung":"AE"
+},
+{
+"id":22,
+"typ":"multiple-choice",
+"frageText":"What is the first program the Linux kernel starts at boot time when using System V init?",
+"antworten":[
+"/lib/init.so",
+"/proc/sys/kernel/init",
+"/etc/rc.d/rcinit",
+"/sbin/init",
+"/boot/init"
+],
+"loesung":"D"
+},
+{
+"id":23,
+"typ":"multiple-choice",
+"frageText":"Which command searches for packages owning the file /etc/debian_version?",
+"antworten":[
+"apt-get search /etc/debian_version",
+"apt -r /etc/debian_version",
+"find /etc/debian_version -dpkg",
+"dpkg -S /etc/debian_version",
+"apt-file /etc/debian_version"
+],
+"loesung":"D"
+},
+{
+"id":24,
+"typ":"multiple-choice",
+"frageText":"What is contained on the EFI System Partition?",
+"antworten":[
+"Linux root filesystem",
+"First stage bootloader",
+"Swap space",
+"Shell binaries",
+"Home directories"
+],
+"loesung":"B"
+},
+{
+"id":25,
+"typ":"multiple-choice",
+"frageText":"Which directories typically contain shared libraries on a 64 bit Linux system? (Choose two)",
+"antworten":[
+"~/.lib64/",
+"/usr/lib64/",
+"/var/lib64/",
+"/lib64/",
+"/opt/lib64/"
+],
+"loesung":"BD"
+},
+{
+"id":26,
+"typ":"multiple-choice",
+"frageText":"Which files exist in a standard GRUB2 installation? (Choose two)",
+"antworten":[
+"/boot/grub/stages/stage0",
+"/boot/grub/i386-pc/lvm.mod",
+"/boot/grub/fstab",
+"/boot/grub/grub.cfg",
+"/boot/grub/linux/vmlinuz"
+],
+"loesung":"BD"
+},
+{
+"id":27,
+"typ":"multiple-choice",
+"frageText":"Which command installs all packages ending with foo?",
+"antworten":[
+"zypper get *foo",
+"zypper update foo?",
+"zypper force foo*",
+"zypper install *foo",
+"zypper add .*foo"
+],
+"loesung":"D"
+},
+{
+"id":28,
+"typ":"multiple-choice",
+"frageText":"Which properties should be changed when cloning a VM? (Choose two)",
+"antworten":[
+"Partition scheme",
+"Filesystem",
+"D-Bus machine ID",
+"Permissions of /root",
+"SSH host keys"
+],
+"loesung":"CE"
+},
+{
+"id":29,
+"typ":"multiple-choice",
+"frageText":"Which command installs GRUB2 into the master boot record on /dev/sdc?",
+"antworten":[
+"grub2 install /dev/sdc",
+"grub-mkrescue /dev/sdc",
+"grub-mbrinstall /dev/sdc",
+"grub-setup /dev/sdc",
+"grub-install /dev/sdc"
+],
+"loesung":"E"
+},
+{
+"id":30,
+"typ":"multiple-choice",
+"frageText":"Which partition type is used for Linux swap?",
+"antworten":[
+"7",
+"82",
+"83",
+"8e",
+"fd"
+],
+"loesung":"B"
+},
+{
+"id":31,
+"typ":"multiple-choice",
+"frageText":"What is true regarding yum configuration? (Choose two)",
+"antworten":[
+"Changes require yum confupdate",
+"Requires yumd restart",
+"Repo config can be split in files",
+"Supports variables like $basearch",
+"yum.config ignored"
+],
+"loesung":"CD"
+},
+{
+"id":32,
+"typ":"multiple-choice",
+"frageText":"Which apt-get command installs newest versions of all installed packages?",
+"antworten":[
+"auto-update",
+"dist-upgrade",
+"full-upgrade",
+"install",
+"update"
+],
+"loesung":"B"
+},
+{
+"id":33,
+"typ":"multiple-choice",
+"frageText":"Which command uninstalls a package but keeps configuration files?",
+"antworten":[
+"dpkg -s",
+"dpkg -L",
+"dpkg -P",
+"dpkg -v",
+"dpkg -r"
+],
+"loesung":"E"
+},
+{
+"id":34,
+"typ":"multiple-choice",
+"frageText":"Which command lists dependencies of foo.rpm?",
+"antworten":[
+"rpm -qpR foo.rpm",
+"rpm -dep foo",
+"rpm -ld foo.rpm",
+"rpm -R foo.rpm",
+"rpm -pD foo"
+],
+"loesung":"A"
+},
+{
+"id":35,
+"typ":"multiple-choice",
+"frageText":"What is the maximum niceness value a regular user can assign?",
+"antworten":[
+"9",
+"15",
+"19",
+"49",
+"99"
+],
+"loesung":"C"
+},
+{
+"id":36,
+"typ":"multiple-choice",
+"frageText":"Which commands list files in /tmp owned by root? (Choose two)",
+"antworten":[
+"find /tmp -user root -print",
+"find -path /tmp -uid root",
+"find /tmp -uid root -print",
+"find /tmp -user root",
+"find -path /tmp -user root -print"
+],
+"loesung":"AD"
+},
+{
+"id":37,
+"typ":"multiple-choice",
+"frageText":"Which are valid Bash redirection operators? (Choose two)",
+"antworten":[
+"<",
+"#>",
+"%>",
+">>>",
+"2>&1"
+],
+"loesung":"AE"
+},
+{
+"id":38,
+"typ":"multiple-choice",
+"frageText":"Which vi command deletes two lines (current and next)?",
+"antworten":[
+"d2",
+"2d",
+"2dd",
+"dd2",
+"de12"
+],
+"loesung":"C"
+},
+{
+"id":39,
+"typ":"multiple-choice",
+"frageText":"Which command allows a background process to continue after logout?",
+"antworten":[
+"job -b",
+"dbmaint &>/dev/pts/null",
+"nohup dbmaint &",
+"bg dbmaint",
+"wait dbmaint"
+],
+"loesung":"C"
+},
+{
+"id":40,
+"typ":"multiple-choice",
+"frageText":"Which commands execute a script without starting a subshell? (Choose two)",
+"antworten":[
+"source /usr/local/bin/runme.sh",
+"/usr/local/bin/runme.sh",
+"/bin/bash /usr/local/bin/runme.sh",
+". /usr/local/bin/runme.sh",
+"run /usr/local/bin/runme.sh"
+],
+"loesung":"AD"
+},
+{
+"id":41,
+"typ":"schriftlich",
+"frageText":"Which program runs a command in specific intervals and refreshes the display?",
+"loesung":"watch"
+},
+{
+"id":42,
+"typ":"multiple-choice",
+"frageText":"In vi which command inserts deleted content below cursor?",
+"antworten":["i","p","P","U","u"],
+"loesung":"B"
+},
+{
+"id":43,
+"typ":"multiple-choice",
+"frageText":"Which command converts CRLF to LF?",
+"antworten":[
+"tr -d '\\r' < userlist.txt > newlist.txt",
+"tr -c '\\n\\r'",
+"tr '\\r\\n'",
+"tr '\\r' '\\n'",
+"tr -s '/^M/^J/'"
+],
+"loesung":"A"
+},
+{
+"id":44,
+"typ":"multiple-choice",
+"frageText":"Which regex transforms txt files into .bak.txt?",
+"antworten":[
+"s/^.txt/.bak/",
+"s/txt/bak.txt/",
+"s/txt$/bak.txt/",
+"s/^txt$/.bak^/",
+"s/[.txt]/.bak$1/"
+],
+"loesung":"C"
+},
+{
+"id":45,
+"typ":"multiple-choice",
+"frageText":"Which command saves file as filea.txt in vi?",
+"antworten":[
+"%s filea.txt",
+"%w filea.txt",
+":save filea.txt",
+":w filea.txt",
+":s filea.txt"
+],
+"loesung":"D"
+},
+{
+"id":46,
+"typ":"multiple-choice",
+"frageText":"Which signal is sent with Ctrl+C?",
+"antworten":["SIGTERM","SIGCONT","SIGSTOP","SIGKILL","SIGINT"],
+"loesung":"E"
+},
+{
+"id":47,
+"typ":"multiple-choice",
+"frageText":"Which command shows output and writes it to /tmp/foodata?",
+"antworten":[
+"foo | less /tmp/foodata",
+"foo | cp /tmp/foodata",
+"foo > /tmp/foodata",
+"foo | tee /tmp/foodata",
+"foo > stdout >> /tmp/foodata"
+],
+"loesung":"D"
+},
+{
+"id":48,
+"typ":"multiple-choice",
+"frageText":"What output will be displayed for echo 'fred $USER'?",
+"antworten":[
+"fred fred",
+"fred /home/fred/",
+"'fred $USER'",
+"fred $USER",
+"'fred fred'"
+],
+"loesung":"D"
+},
+{
+"id":49,
+"typ":"multiple-choice",
+"frageText":"Which command displays the executable path of foo?",
+"antworten":[
+"lsattr foo",
+"apropos foo",
+"locate foo",
+"whatis foo",
+"which foo"
+],
+"loesung":"E"
+},
+{
+"id":50,
+"typ":"multiple-choice",
+"frageText":"Which find option handles filenames with spaces when used with xargs?",
+"antworten":[
+"-rep-space",
+"-printnul",
+"-nospace",
+"-ignore-space",
+"-print0"
+],
+"loesung":"E"
+},
+{
+"id":51,
+"typ":"multiple-choice",
+"frageText":"Which commands can determine how long the system has been running? (Choose two)",
+"antworten":["uptime","up","time --up","uname -u","top"],
+"loesung":"AE"
+},
+{
+"id":52,
+"typ":"multiple-choice",
+"frageText":"What happens when executing ls > files if files does not exist?",
+"antworten":[
+"The output is printed to terminal",
+"files is created with ls output",
+"An error occurs",
+"files command is executed",
+"Output is discarded"
+],
+"loesung":"B"
+},
+{
+"id":53,
+"typ":"multiple-choice",
+"frageText":"Which file contains Bash command history?",
+"antworten":[
+".bashrc_history",
+".bash_histfile",
+".history",
+".bash_history",
+".history_bash"
+],
+"loesung":"D"
+},
+{
+"id":54,
+"typ":"multiple-choice",
+"frageText":"Which wildcards match ttyS0 ttyS1 ttyS2? (Choose two)",
+"antworten":[
+"ttyS[1-5]",
+"tty?[0-5]",
+"tty*2",
+"tty[A-Z][012]",
+"tty[Ss][02]"
+],
+"loesung":"BD"
+},
+{
+"id":55,
+"typ":"multiple-choice",
+"frageText":"Which command redirects ls output to standard error?",
+"antworten":[
+"ls >-1",
+"ls <<ERR",
+"ls >&2",
+"ls >>2",
+"ls |error"
+],
+"loesung":"C"
+},
+{
+"id":56,
+"typ":"multiple-choice",
+"frageText":"Which command lists contents of gzip tar archive?",
+"antworten":[
+"gzip archive.tgz | tar xvf",
+"tar -fzt archive.tgz",
+"gzip -d archive.tgz | tar tvf",
+"tar cf archive.tgz",
+"tar ztf archive.tgz"
+],
+"loesung":"E"
+},
+{
+"id":57,
+"typ":"multiple-choice",
+"frageText":"Which command prints usernames and primary group from /etc/passwd?",
+"antworten":[
+"fmt -f 1,4",
+"cut -d : -f 1,4",
+"sort -t : -k 1,4",
+"paste -f 1,4",
+"split -c 1,4"
+],
+"loesung":"B"
+},
+{
+"id":58,
+"typ":"multiple-choice",
+"frageText":"Which regex represents a single uppercase letter?",
+"antworten":[":UPPER:","[A-Z]","!a-z","%C","{AZ}"],
+"loesung":"B"
+},
+{
+"id":59,
+"typ":"schriftlich",
+"frageText":"Which command starts another command with a given nice level?",
+"loesung":"nice"
+},
+{
+"id":60,
+"typ":"multiple-choice",
+"frageText":"Which grep command filters log entries between 08:00 and 08:59?",
+"antworten":[
+"grep -E ':08:[09]+:[09]+'",
+"grep -E ':08:[00]+'",
+"grep -E loga.log ':08:[0-9]+:[0-9]+'",
+"grep loga.log ':08:[0-9]:[0-9]'",
+"grep -E ':08:[0-9]+:[0-9]+' loga.log"
+],
+"loesung":"E"
+},
+{
+"id":61,
+"typ":"multiple-choice",
+"frageText":"Instead of device names in /etc/fstab what can identify partitions? (Choose two)",
+"antworten":["LABEL","ID","FIND","NAME","UUID"],
+"loesung":"AE"
+},
+{
+"id":62,
+"typ":"multiple-choice",
+"frageText":"Which yum command installs all packages from the group admintools?",
+"antworten":[
+"yum pkgsel --install admintools",
+"yum install admintools/*",
+"yum groupinstall admintools",
+"yum taskinstall admintools",
+"yum collection install admintools"
+],
+"loesung":"C"
+},
+{
+"id":63,
+"typ":"schriftlich",
+"frageText":"What directory contains configuration files for yum repositories?",
+"loesung":"/etc/yum.repos.d"
+},
+{
+"id":64,
+"typ":"multiple-choice",
+"frageText":"Which command installs GRUB bootloader to first partition of first disk?",
+"antworten":[
+"grub-install /dev/sda",
+"grub-install /dev/sda1",
+"grub-install current /dev/sda0",
+"grub-install /dev/sda0",
+"grub-install current /dev/sda1"
+],
+"loesung":"B"
+},
+{
+"id":65,
+"typ":"multiple-choice",
+"frageText":"Which files are in /boot? (Choose two)",
+"antworten":[
+"Linux kernel images",
+"Bash binaries",
+"systemd units",
+"Initial ramdisk images",
+"fsck binaries"
+],
+"loesung":"AD"
+},
+{
+"id":66,
+"typ":"multiple-choice",
+"frageText":"Which file defines Debian package download locations?",
+"antworten":[
+"/etc/dpkg/dpkg.cfg",
+"/etc/apt/apt.conf.d",
+"/etc/apt/apt.conf",
+"/etc/dpkg/dselect.cfg",
+"/etc/apt/sources.list"
+],
+"loesung":"E"
+},
+{
+"id":67,
+"typ":"multiple-choice",
+"frageText":"Which dpkg option removes package including configuration?",
+"antworten":[
+"--clean",
+"--purge",
+"--vacuum",
+"--remove",
+"--declare"
+],
+"loesung":"B"
+},
+{
+"id":68,
+"typ":"multiple-choice",
+"frageText":"Which statements compare containers vs VMs correctly? (Choose three)",
+"antworten":[
+"Containers use kernel isolation",
+"VMs can run any OS",
+"Containers use only emulated hardware",
+"VMs use hypervisors",
+"Containers run separate kernels"
+],
+"loesung":"ABD"
+},
+{
+"id":69,
+"typ":"multiple-choice",
+"frageText":"Which command fixes missing dependencies during dpkg install?",
+"antworten":[
+"dpkg --fix --all",
+"apt-get autoinstall",
+"dpkg-reconfigure --all",
+"apt-get all",
+"apt-get install -f"
+],
+"loesung":"E"
+},
+{
+"id":70,
+"typ":"multiple-choice",
+"frageText":"Which command lists all installed RPM packages?",
+"antworten":[
+"yum --query --all",
+"yum --list --installed",
+"rpm --query --list",
+"rpm --list --installed",
+"rpm --query --all"
+],
+"loesung":"E"
+},
+{
+"id":71,
+"typ":"multiple-choice",
+"frageText":"Which commands are valid in GRUB2 configuration? (Choose two)",
+"antworten":[
+"menuentry",
+"uefi",
+"pxe-ifconfig",
+"insmod",
+"kpartx"
+],
+"loesung":"AD"
+},
+{
+"id":72,
+"typ":"multiple-choice",
+"frageText":"What does ldd command do?",
+"antworten":[
+"Lists shared libraries used by binary",
+"Updates shared libraries",
+"Creates static binaries",
+"Defines default library version",
+"Runs binary with alternate libraries"
+],
+"loesung":"A"
+},
+{
+"id":73,
+"typ":"multiple-choice",
+"frageText":"What can LVM do? (Choose three)",
+"antworten":[
+"Create snapshots",
+"Resize logical volumes",
+"Create/delete logical volumes",
+"Create RAID9",
+"Encrypt volumes"
+],
+"loesung":"ABC"
+},
+{
+"id":74,
+"typ":"multiple-choice",
+"frageText":"What differences exist between GPT and MBR? (Choose two)",
+"antworten":[
+"MBR supports 4TB partitions",
+"GPT supports 128 partitions",
+"GPT supports 64 partitions",
+"MBR supports 2.2TB limit",
+"Both support 4 partitions"
+],
+"loesung":"BD"
+},
+{
+"id":75,
+"typ":"multiple-choice",
+"frageText":"What are benefits of using hard links in backups? (Choose two)",
+"antworten":[
+"Move backups to tape",
+"Asynchronous copy",
+"Files cannot change",
+"Saves disk space",
+"Backup runs faster"
+],
+"loesung":"DE"
+},
+{
+"id":76,
+"typ":"schriftlich",
+"frageText":"Which /proc file lists all mounted devices?",
+"loesung":"/proc/mounts"
+},
+{
+"id":77,
+"typ":"multiple-choice",
+"frageText":"How many fields are in /etc/fstab line?",
+"antworten":["3","4","5","6","7"],
+"loesung":"D"
+},
+{
+"id":78,
+"typ":"multiple-choice",
+"frageText":"Why might chmod fail as regular user? (Choose two)",
+"antworten":[
+"File owned by another user",
+"Symbolic link permissions fixed",
+"Sticky bit prevents change",
+"Hard links inherit permissions",
+"SetUID restriction"
+],
+"loesung":"AB"
+},
+{
+"id":79,
+"typ":"multiple-choice",
+"frageText":"Which filesystems preallocate inodes? (Choose two)",
+"antworten":["JFS","ext3","XFS","ext2","procfs"],
+"loesung":"BD"
+},
+{
+"id":80,
+"typ":"multiple-choice",
+"frageText":"Which command sets SetUID on /bin/foo?",
+"antworten":[
+"chmod 4755 /bin/foo",
+"chmod 1755 /bin/foo",
+"chmod u-s /bin/foo",
+"chmod 755+s /bin/foo",
+"chmod 2755 /bin/foo"
+],
+"loesung":"A"
+},
+{
+"id":81,
+"typ":"multiple-choice",
+"frageText":"Which commands display inode numbers? (Choose two)",
+"antworten":["inode","ln","ls","cp","stat"],
+"loesung":"CE"
+},
+{
+"id":82,
+"typ":"multiple-choice",
+"frageText":"Which umask ensures new files have permission -rw-r-----?",
+"antworten":["0017","0640","0038","0227","0027"],
+"loesung":"E"
+},
+{
+"id":83,
+"typ":"multiple-choice",
+"frageText":"How can errors in XFS filesystem be fixed?",
+"antworten":[
+"mount -f",
+"xfsck",
+"mount with xfs_repair",
+"xfsadmin repair",
+"xfs_repair"
+],
+"loesung":"E"
+},
+{
+"id":84,
+"typ":"multiple-choice",
+"frageText":"Which property changes when a hard link is created?",
+"antworten":[
+"File size",
+"Link count",
+"Modify timestamp",
+"Inode number",
+"Permissions"
+],
+"loesung":"B"
+},
+{
+"id":85,
+"typ":"schriftlich",
+"frageText":"Where should administrator compiled binaries be placed?",
+"loesung":"/usr/local/bin"
+},
+{
+"id":86,
+"typ":"multiple-choice",
+"frageText":"Which command shows how shell handles a command?",
+"antworten":["where","type","stat","case","fileinfo"],
+"loesung":"B"
+},
+{
+"id":87,
+"typ":"multiple-choice",
+"frageText":"Which character starts reverse search in vi?",
+"antworten":["r","/","F","?","s"],
+"loesung":"D"
+},
+{
+"id":88,
+"typ":"multiple-choice",
+"frageText":"Which command displays manual page section 1?",
+"antworten":[
+"man command(1)",
+"man command@1",
+"man 1 command",
+"man 1.command",
+"man -s 1 command"
+],
+"loesung":"C"
+},
+{
+"id":89,
+"typ":"multiple-choice",
+"frageText":"Which command overwrites file data with ls output?",
+"antworten":[
+"ls 3> data",
+"ls >& data",
+"ls > data",
+"ls >> data",
+"ls >>> data"
+],
+"loesung":"C"
+},
+{
+"id":90,
+"typ":"multiple-choice",
+"frageText":"Which command changes shell options and parameters?",
+"antworten":["history","setsh","bashconf","set","envsetup"],
+"loesung":"D"
+},
+{
+"id":91,
+"typ":"multiple-choice",
+"frageText":"Which commands show processes owned by root? (Choose two)",
+"antworten":[
+"pgrep -c root",
+"pgrep -u root",
+"pgrep -f root",
+"pgrep -U 0",
+"pgrep -c 0"
+],
+"loesung":"BD"
+},
+{
+"id":92,
+"typ":"multiple-choice",
+"frageText":"Which commands save and exit vi? (Choose two)",
+"antworten":[
+"Ctrl XX",
+"Ctrl :W",
+"Esc zz",
+"Esc :wq",
+"Esc ZZ"
+],
+"loesung":"DE"
+},
+{
+"id":93,
+"typ":"multiple-choice",
+"frageText":"What does grep -v do?",
+"antworten":[
+"Highlight color",
+"Show version",
+"Output non matching lines",
+"Reverse output order",
+"Prefix matches"
+],
+"loesung":"C"
+},
+{
+"id":94,
+"typ":"multiple-choice",
+"frageText":"Which commands show executable path? (Choose two)",
+"antworten":["find","pwd","which","locate","type"],
+"loesung":"CE"
+},
+{
+"id":95,
+"typ":"multiple-choice",
+"frageText":"Which signal is sent with Ctrl+Z?",
+"antworten":["SIGTERM","SIGCONT","SIGSTOP","SIGKILL","SIGINT"],
+"loesung":"C"
+},
+{
+"id":96,
+"typ":"multiple-choice",
+"frageText":"Result of regex s/[ABC][abc]/xx/ applied to ABCabc?",
+"antworten":[
+"ABxxbc",
+"xxCxxc",
+"xxxxxx",
+"ABCabc",
+"Axxaxx"
+],
+"loesung":"A"
+},
+{
+"id":97,
+"typ":"multiple-choice",
+"frageText":"Which commands print working directory? (Choose two)",
+"antworten":[
+"echo ${PWD}",
+"echo ${WD}",
+"printwd",
+"pwd",
+"echo ${pwd}"
+],
+"loesung":"AD"
+},
+{
+"id":98,
+"typ":"multiple-choice",
+"frageText":"Which command outputs 'test' using here document?",
+"antworten":["A","B","C","D","cat <<EOT"],
+"loesung":"E"
+},
+{
+"id":99,
+"typ":"multiple-choice",
+"frageText":"Default nice level when using nice command?",
+"antworten":["-10","0","10","15","20"],
+"loesung":"C"
+},
+{
+"id":100,
+"typ":"multiple-choice",
+"frageText":"Which command removes directory \\dir in home?",
+"antworten":[
+"rmdir ~/\\\\dir",
+"rmdir \"~/\\dir\"",
+"rmdir ~/'dir'",
+"rmdir ~/\\dir",
+"rmdir '~/\\dir'"
+],
+"loesung":"A"
+},
+{
+"id":101,
+"typ":"multiple-choice",
+"frageText":"Which command searches file contents using regex?",
+"antworten":["find","locate","grep","reggrep","pgrep"],
+"loesung":"C"
+},
+{
+"id":102,
+"typ":"multiple-choice",
+"frageText":"Which find option restricts directory depth?",
+"antworten":["-maxdepth","-dirmax","-maxlevels","-s","-n"],
+"loesung":"A"
+},
+{
+"id":103,
+"typ":"multiple-choice",
+"frageText":"Which command determines file type using database?",
+"antworten":["type","file","magic","pmagic","hash"],
+"loesung":"B"
+},
+{
+"id":104,
+"typ":"multiple-choice",
+"frageText":"Which command prints usernames and login shell?",
+"antworten":[
+"column -s : 1,7",
+"chop -c 1,7",
+"colrm 1,7",
+"sort -t: -k1,7",
+"cut -d: -f1,7"
+],
+"loesung":"E"
+},
+{
+"id":105,
+"typ":"multiple-choice",
+"frageText":"What remains after running gunzip texts.tgz?",
+"antworten":[
+"a.txt b.txt texts.tgz",
+"texts.tar texts.tgz",
+"a.txt.gz b.txt.gz",
+"a.txt b.txt",
+"texts.tar"
+],
+"loesung":"E"
+},
+{
+"id":106,
+"typ":"multiple-choice",
+"frageText":"How can vi commands be repeated?",
+"antworten":[
+":repeat",
+"Number before command",
+"Select lines first",
+":set repetition",
+"Number after command"
+],
+"loesung":"B"
+},
+{
+"id":107,
+"typ":"multiple-choice",
+"frageText":"What happens when command ends with & ?",
+"antworten":[
+"Output to /dev/null",
+"Runs in background",
+"Shell executes output",
+"Runs under init",
+"Input from /dev/null"
+],
+"loesung":"B"
+},
+{
+"id":108,
+"typ":"multiple-choice",
+"frageText":"Which command splits file into chunks?",
+"antworten":["ar","cat","break","split","parted"],
+"loesung":"D"
+},
+{
+"id":109,
+"typ":"multiple-choice",
+"frageText":"What does xargs do?",
+"antworten":[
+"Pass arguments to X server",
+"Repeat command execution",
+"Build commands from stdin",
+"Graphical questions",
+"Long option support"
+],
+"loesung":"C"
+},
+{
+"id":110,
+"typ":"schriftlich",
+"frageText":"Which command lists background tasks in current shell?",
+"loesung":"jobs"
+},
+{
+"id":111,
+"typ":"schriftlich",
+"frageText":"Which command changes priority of running process?",
+"loesung":"renice"
+},
+{
+"id":112,
+"typ":"multiple-choice",
+"frageText":"What does 1>&2 redirect?",
+"antworten":[
+"stderr to stdin",
+"stdout to stderr",
+"stdin to stderr",
+"stderr to stdout",
+"stdout to stdin"
+],
+"loesung":"B"
+},
+{
+"id":113,
+"typ":"multiple-choice",
+"frageText":"Which method helps identify boot problems from rescue system?",
+"antworten":[
+"dmesg",
+"/proc/kmsg",
+"/var/log files",
+"chroot + dmesg",
+"reboot"
+],
+"loesung":"C"
+},
+{
+"id":114,
+"typ":"multiple-choice",
+"frageText":"Where is bootloader stored on UEFI system?",
+"antworten":[
+"EBR",
+"MBR",
+"EFI System Partition",
+"/boot partition",
+"Partition 127"
+],
+"loesung":"C"
+},
+{
+"id":115,
+"typ":"multiple-choice",
+"frageText":"Which command sets default systemd target?",
+"antworten":[
+"systemctl isolate",
+"systemctl set-runlevel",
+"systemctl set-boot",
+"systemctl set-default",
+"systemctl boot"
+],
+"loesung":"D"
+},
+{
+"id":116,
+"typ":"multiple-choice",
+"frageText":"What is true about initramfs? (Choose two)",
+"antworten":[
+"It is compressed filesystem archive",
+"It contains MBR",
+"Available in /run/initramfs",
+"Used before root filesystem",
+"Independent of kernel"
+],
+"loesung":"AD"
+},
+{
+"id":117,
+"typ":"multiple-choice",
+"frageText":"Which command loads kernel module with dependencies?",
+"antworten":[
+"depmod",
+"modprobe",
+"module_install",
+"insmod",
+"loadmod"
+],
+"loesung":"B"
+},
+{
+"id":118,
+"typ":"multiple-choice",
+"frageText":"What can lspci display? (Choose three)",
+"antworten":[
+"Battery type",
+"IRQ settings",
+"PCI bus speed",
+"MAC address",
+"Vendor ID"
+],
+"loesung":"BCE"
+},
+{
+"id":119,
+"typ":"schriftlich",
+"frageText":"Which System V init file sets default runlevel?",
+"loesung":"/etc/inittab"
+},
+{
+"id":120,
+"typ":"multiple-choice",
+"frageText":"When are scripts in rc1.d/K01apache2 and rc2.d/S02apache2 executed? (Choose two)",
+"antworten":[
+"S02apache2 when entering runlevel 2",
+"S02apache2 when leaving runlevel 2",
+"K01apache2 never runs",
+"Both during shutdown",
+"K01apache2 when entering runlevel 1"
+],
+"loesung":"AE"
+}
+]

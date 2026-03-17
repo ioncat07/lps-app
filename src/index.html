@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>LpsApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+  <div id="error-output" style="color: red; font-family: monospace; white-space: pre-wrap; padding: 20px;"></div>
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      document.getElementById('error-output').innerText += message + '\n' + (error ? error.stack : '') + '\n\n';
+    };
+    window.onunhandledrejection = function(event) {
+      document.getElementById('error-output').innerText += 'Promise rejection: ' + event.reason + '\n\n';
+    };
+  </script>
+  <app-root></app-root>
+</body>
+
+</html>
