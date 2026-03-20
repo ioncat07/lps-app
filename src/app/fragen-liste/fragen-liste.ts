@@ -11,6 +11,7 @@ import { FrageDetail } from '../frage-detail/frage-detail';
   styleUrl: './fragen-liste.css'
 })
 export class FragenListe implements OnInit {
+  ansicht: 'start' | 'modus' = 'start';
   alleFragen: Frage[] = [];
   fragen: Frage[] = [];
   ausgewaehlteFrage?: Frage;
@@ -174,6 +175,21 @@ export class FragenListe implements OnInit {
     if (this.modus === 'vollpruefung') {
       if (!this.ausgewaehlteFrage.beantwortet) {
         this.ausgewaehlteFrage.beantwortet = true;
+
+        // Check if answer is correct or wrong
+        if (!this.aktuelleFrageIstKorrektBeantwortet()) {
+          this.falscheAntworten++;
+
+          // Stop exam if 8 errors reached
+          if (this.falscheAntworten >= 8) {
+            this.vollpruefungAbgeschlossen = true;
+            this.pruefungBeendet = true;
+            this.vollpruefungErgebnisText =
+              `Die Voll-Prüfung wurde beendet. Sie haben 8 Fragen falsch beantwortet.`;
+          }
+        } else {
+          this.richtigeAntworten++;
+        }
       }
     }
   }
@@ -291,4 +307,18 @@ export class FragenListe implements OnInit {
   private normalisiereText(text: string): string {
     return text.trim().toLowerCase().replace(/\s+/g, ' ');
   }
+
+  startModus(modus: Modus, filter: FilterTyp): void {
+  this.filterAnwenden(filter);
+  this.modus = modus;
+  this.ansicht = 'modus';
+  this.zuruecksetzen();
+}
+
+zurStartseite(): void {
+  this.ansicht = 'start';
+  this.modus = 'lernen';
+  this.filterTyp = 'alle';
+  this.zuruecksetzen();
+}
 }

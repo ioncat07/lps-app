@@ -1,149 +1,167 @@
 <div class="seite">
+
+ 
+
   <h1>LPS – Lern- & Prüf-Simulator</h1>
 
-  <div class="filter-leiste">
-    <button
-      type="button"
-      [class.aktiv]="filterTyp === 'alle'"
-      (click)="filterAnwenden('alle')">
-      Alle 120 Fragen
-    </button>
 
-    <button
-      type="button"
-      [class.aktiv]="filterTyp === 'multiple-choice'"
-      (click)="filterAnwenden('multiple-choice')">
-      Multiple-Choice-Fragen
-    </button>
+  @if (ansicht === 'start') {
+    <div class="startseite">
+      <h2>Startseite</h2>
+      <p>Bitte wählen Sie den gewünschten Lern- oder Prüfmodus aus.</p>
 
-    <button
-      type="button"
-      [class.aktiv]="filterTyp === 'schriftlich'"
-      (click)="filterAnwenden('schriftlich')">
-      Schriftliche Fragen
-    </button>
-  </div>
-
-  <div class="modus-leiste">
-    <button
-      type="button"
-      [class.aktiv]="modus === 'lernen'"
-      (click)="setzeModus('lernen')">
-      Lernmodus
-    </button>
-
-    <button
-      type="button"
-      [class.aktiv]="modus === 'teilpruefung'"
-      (click)="setzeModus('teilpruefung')">
-      Teil-Prüfmodus
-    </button>
-
-    <button
-      type="button"
-      [class.aktiv]="modus === 'vollpruefung'"
-      (click)="setzeModus('vollpruefung')">
-      Voll-Prüfmodus
-    </button>
-
-    <button
-      type="button"
-      class="zuruecksetzen-button"
-      (click)="zuruecksetzen()">
-      Zurücksetzen
-    </button>
-  </div>
-
-  <div class="pruefungs-info">
-    <p>Gesamtfragen: {{ fragen.length }}</p>
-    <p>Beantwortet: {{ anzahlBeantwortet() }}</p>
-    <p>Verbleibend: {{ anzahlVerbleibend() }}</p>
-  </div>
-
-  <div class="fortschritt-container">
-    <div class="fortschritt-text">
-      Fortschritt: {{ fortschrittProzent() }}%
-    </div>
-
-    <div class="fortschritt-leiste">
-      <div
-        class="fortschritt-wert"
-        [style.width.%]="fortschrittProzent()">
+      <div class="start-gruppe">
+        <h3>Lernmodus</h3>
+        <button type="button" (click)="startModus('lernen', 'alle')">
+          Alle 120 Fragen lernen
+        </button>
+        <button type="button" (click)="startModus('lernen', 'multiple-choice')">
+          Multiple-Choice-Fragen lernen
+        </button>
+        <button type="button" (click)="startModus('lernen', 'schriftlich')">
+          Schriftliche Fragen lernen
+        </button>
       </div>
-    </div>
-  </div>
 
-  @if (modus === 'teilpruefung' || modus === 'vollpruefung') {
-    <div class="statusleiste">
-      <p>Richtige Antworten: {{ richtigeAntworten }}</p>
-      <p>Falsche Antworten: {{ falscheAntworten }}</p>
+      <div class="start-gruppe">
+        <h3>Teil-Prüfmodus</h3>
+        <button type="button" (click)="startModus('teilpruefung', 'alle')">
+          Alle 120 Fragen
+        </button>
+        <button type="button" (click)="startModus('teilpruefung', 'multiple-choice')">
+          Multiple-Choice-Fragen
+        </button>
+        <button type="button" (click)="startModus('teilpruefung', 'schriftlich')">
+          Schriftliche Fragen
+        </button>
+      </div>
+
+      <div class="start-gruppe">
+        <h3>Voll-Prüfmodus</h3>
+        <button type="button" (click)="startModus('vollpruefung', 'alle')">
+          Alle 120 Fragen
+        </button>
+        <button type="button" (click)="startModus('vollpruefung', 'multiple-choice')">
+          Multiple-Choice-Fragen
+        </button>
+        <button type="button" (click)="startModus('vollpruefung', 'schriftlich')">
+          Schriftliche Fragen
+        </button>
+      </div>
     </div>
   }
 
-  @if (modus === 'vollpruefung' && !vollpruefungAbgeschlossen) {
-    <div class="vollpruefung-aktionen">
-      <button type="button" class="beenden-button" (click)="vollpruefungBeenden()">
-        Prüfung beenden
+  @if (ansicht === 'modus') {
+    <div class="kopfzeile-modus">
+      <button type="button" class="home-button" (click)="zurStartseite()">
+        ⌂
       </button>
-    </div>
-  }
 
-  @if (pruefungsMeldung) {
-    <p class="pruefungs-meldung">{{ pruefungsMeldung }}</p>
-  }
-
-  @if (vollpruefungErgebnisText) {
-    <div class="pruefungs-ergebnis">
-      <p>{{ vollpruefungErgebnisText }}</p>
-      <p>Ergebnis in Prozent: {{ ergebnisProzent() }}%</p>
-    </div>
-  }
-
-  @if (!geladen) {
-    <p>Fragen werden geladen...</p>
-  }
-
-  @if (fehlertext) {
-    <p class="fehler">{{ fehlertext }}</p>
-  }
-
-  @if (geladen && !fehlertext) {
-    <div class="layout">
-      <div class="liste">
-        <h2>Fragenliste</h2>
-
-        <ul>
-          @for (frage of fragen; track frage.id) {
-            <li>
-              <button
-                type="button"
-                class="frage-button"
-                [class.aktiv]="ausgewaehlteFrage?.id === frage.id"
-                (click)="frageAuswaehlen(frage)">
-                {{ frage.id }}. {{ frage.frageText }}
-              </button>
-            </li>
-          }
-        </ul>
-      </div>
-
-      <div class="detail">
-        <app-frage-detail
-          [frage]="ausgewaehlteFrage"
-          [modus]="modus"
-          [frageKorrektBeantwortet]="aktuelleFrageIstKorrektBeantwortet()"
-          [antwortStatusFn]="antwortStatus.bind(this)"
-          [istErsteFrage]="istErsteFrage()"
-          [istLetzteFrage]="istLetzteFrage()"
-          (antwortGeklickt)="antwortUmschalten($event)"
-          (schriftlicheAntwortGeaendert)="schriftlicheAntwortSetzen($event)"
-          (pruefenGeklickt)="antwortPruefen()"
-          (erste)="ersteFrage()"
-          (vorherige)="vorherigeFrage()"
-          (naechste)="naechsteFrage()"
-          (letzte)="letzteFrage()">
-        </app-frage-detail>
+      <div class="modus-anzeige">
+        @if (modus === 'lernen') {
+          <span>Lernmodus</span>
+        }
+        @if (modus === 'teilpruefung') {
+          <span>Teil-Prüfmodus</span>
+        }
+        @if (modus === 'vollpruefung') {
+          <span>Voll-Prüfmodus</span>
+        }
       </div>
     </div>
+
+    <div class="pruefungs-info">
+      <p>Gesamtfragen: {{ fragen.length }}</p>
+      <p>Beantwortet: {{ anzahlBeantwortet() }}</p>
+      <p>Verbleibend: {{ anzahlVerbleibend() }}</p>
+    </div>
+
+    <div class="fortschritt-container">
+      <div class="fortschritt-text">
+        Fortschritt: {{ fortschrittProzent() }}%
+      </div>
+
+      <div class="fortschritt-leiste">
+        <div class="fortschritt-wert" [style.width.%]="fortschrittProzent()"></div>
+      </div>
+    </div>
+
+    @if (modus === 'teilpruefung' || modus === 'vollpruefung') {
+      <div class="statusleiste">
+        <p>Richtige Antworten: {{ richtigeAntworten }}</p>
+        <p>Falsche Antworten: {{ falscheAntworten }}</p>
+      </div>
+    }
+
+    @if (modus === 'vollpruefung' && !vollpruefungAbgeschlossen) {
+      <div class="vollpruefung-aktionen">
+        <button type="button" class="beenden-button" (click)="vollpruefungBeenden()">
+          Prüfung beenden
+        </button>
+      </div>
+    }
+
+    @if (pruefungsMeldung) {
+      <p class="pruefungs-meldung">{{ pruefungsMeldung }}</p>
+    }
+
+    @if (vollpruefungErgebnisText) {
+      <div class="pruefungs-ergebnis">
+        <p>{{ vollpruefungErgebnisText }}</p>
+        <p>Ergebnis in Prozent: {{ ergebnisProzent() }}%</p>
+      </div>
+    }
+
+    @if (!geladen) {
+      <p>Fragen werden geladen...</p>
+    }
+
+    @if (fehlertext) {
+      <p class="fehler">{{ fehlertext }}</p>
+    }
+
+    @if (geladen && !fehlertext) {
+      <div class="layout">
+        <div class="liste">
+          <h2>Fragenliste</h2>
+
+          <ul>
+            @for (frage of fragen; track frage.id) {
+              <li>
+                <button
+                  type="button"
+                  class="frage-button"
+                  [class.aktiv]="ausgewaehlteFrage?.id === frage.id"
+                  (click)="frageAuswaehlen(frage)">
+                  {{ frage.id }}. {{ frage.frageText }}
+                </button>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="detail">
+          <app-frage-detail
+            [frage]="ausgewaehlteFrage"
+            [modus]="modus"
+            [frageKorrektBeantwortet]="aktuelleFrageIstKorrektBeantwortet()"
+            [antwortStatusFn]="antwortStatus.bind(this)"
+            [istErsteFrage]="istErsteFrage()"
+            [istLetzteFrage]="istLetzteFrage()"
+            (antwortGeklickt)="antwortUmschalten($event)"
+            (schriftlicheAntwortGeaendert)="schriftlicheAntwortSetzen($event)"
+            (pruefenGeklickt)="antwortPruefen()"
+            (erste)="ersteFrage()"
+            (vorherige)="vorherigeFrage()"
+            (naechste)="naechsteFrage()"
+            (letzte)="letzteFrage()">
+          </app-frage-detail>
+        </div>
+      </div>
+    }
   }
+
+  <footer class="footer">
+    Dortmund 2026
+  </footer>
 </div>
