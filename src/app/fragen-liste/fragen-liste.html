@@ -1,139 +1,133 @@
 <div class="seite">
 
- 
+  <header class="kopf">
+    <h1>LPS – Lern- &amp; Prüf-Simulator</h1>
+  </header>
 
-  <h1>LPS – Lern- & Prüf-Simulator</h1>
+  <!-- ── Schritt 1: Katalog wählen ──────────────────────────────── -->
+  @if (ansicht === 'katalog') {
+    <main class="startseite">
+      <h2>Willkommen</h2>
+      <p>Wählen Sie einen Fragenkatalog:</p>
 
+      @if (ladevorgang) {
+        <p class="laden">Fragen werden geladen ...</p>
+      }
 
-  @if (ansicht === 'start') {
-    <div class="startseite">
-      <h2>Startseite</h2>
-      <p>Bitte wählen Sie den gewünschten Lern- oder Prüfmodus aus.</p>
+      @if (fehlertext) {
+        <p class="fehler">{{ fehlertext }}</p>
+      }
 
-      <div class="start-gruppe">
-        <h3>Lernmodus</h3>
-        <button type="button" (click)="startModus('lernen', 'alle')">
-          Alle 120 Fragen lernen
+      <div class="katalog-reihe">
+        <button type="button" class="katalog-karte" (click)="katalogWaehlen('lpic101')" [disabled]="ladevorgang">
+          <span class="katalog-titel">LPIC-101</span>
+          <span class="katalog-sub">Linux Administrator – Teil 1</span>
         </button>
-        <button type="button" (click)="startModus('lernen', 'multiple-choice')">
-          Multiple-Choice-Fragen lernen
-        </button>
-        <button type="button" (click)="startModus('lernen', 'schriftlich')">
-          Schriftliche Fragen lernen
+        <button type="button" class="katalog-karte" (click)="katalogWaehlen('lpic102')" [disabled]="ladevorgang">
+          <span class="katalog-titel">LPIC-102</span>
+          <span class="katalog-sub">Linux Administrator – Teil 2</span>
         </button>
       </div>
-
-      <div class="start-gruppe">
-        <h3>Teil-Prüfmodus</h3>
-        <button type="button" (click)="startModus('teilpruefung', 'alle')">
-          Alle 120 Fragen
-        </button>
-        <button type="button" (click)="startModus('teilpruefung', 'multiple-choice')">
-          Multiple-Choice-Fragen
-        </button>
-        <button type="button" (click)="startModus('teilpruefung', 'schriftlich')">
-          Schriftliche Fragen
-        </button>
-      </div>
-
-      <div class="start-gruppe">
-        <h3>Voll-Prüfmodus</h3>
-        <button type="button" (click)="startModus('vollpruefung', 'alle')">
-          Alle 120 Fragen
-        </button>
-        <button type="button" (click)="startModus('vollpruefung', 'multiple-choice')">
-          Multiple-Choice-Fragen
-        </button>
-        <button type="button" (click)="startModus('vollpruefung', 'schriftlich')">
-          Schriftliche Fragen
-        </button>
-      </div>
-    </div>
+    </main>
   }
 
+  <!-- ── Schritt 2: Modus wählen ────────────────────────────────── -->
   @if (ansicht === 'modus') {
-    <div class="kopfzeile-modus">
-      <button type="button" class="home-button" (click)="zurStartseite()">
-        ⌂
-      </button>
+    <main class="modus-seite">
 
-      <div class="modus-anzeige">
-        @if (modus === 'lernen') {
-          <span>Lernmodus</span>
-        }
-        @if (modus === 'teilpruefung') {
-          <span>Teil-Prüfmodus</span>
-        }
-        @if (modus === 'vollpruefung') {
-          <span>Voll-Prüfmodus</span>
-        }
-      </div>
-    </div>
-
-    <div class="pruefungs-info">
-      <p>Gesamtfragen: {{ fragen.length }}</p>
-      <p>Beantwortet: {{ anzahlBeantwortet() }}</p>
-      <p>Verbleibend: {{ anzahlVerbleibend() }}</p>
-    </div>
-
-    <div class="fortschritt-container">
-      <div class="fortschritt-text">
-        Fortschritt: {{ fortschrittProzent() }}%
+      <div class="nav-zeile">
+        <button type="button" class="zurueck-btn" (click)="zurStartseite()">&#8592; Zurück</button>
+        <span class="katalog-badge">{{ katalogLabel }}</span>
       </div>
 
-      <div class="fortschritt-leiste">
-        <div class="fortschritt-wert" [style.width.%]="fortschrittProzent()"></div>
+      <h2>Modus wählen</h2>
+
+      <div class="modus-karten">
+
+        <div class="modus-karte lernen-karte">
+          <h3>Lernmodus</h3>
+          <p>Richtige Lösungen werden sofort angezeigt.</p>
+          <div class="modus-optionen">
+            <button type="button" (click)="modusStarten('lernen', 'alle')">
+              Alle 120 Fragen lernen
+            </button>
+            <button type="button" (click)="modusStarten('lernen', 'multiple-choice')">
+              Multiple-Choice-Fragen lernen
+            </button>
+            <button type="button" (click)="modusStarten('lernen', 'schriftlich')">
+              Schriftliche Fragen lernen
+            </button>
+          </div>
+        </div>
+
+        <div class="modus-karte teilpruefung-karte">
+          <h3>Teil-Prüfmodus</h3>
+          <p>Alle 120 Fragen – direktes Feedback nach jeder Antwort.</p>
+          <div class="modus-optionen">
+            <button type="button" (click)="modusStarten('teilpruefung')">
+              Teil-Prüfung starten
+            </button>
+          </div>
+        </div>
+
+        <div class="modus-karte vollpruefung-karte">
+          <h3>Voll-Prüfmodus</h3>
+          <p>60 zufällige Fragen – Ergebnis erst am Ende.</p>
+          <div class="modus-optionen">
+            <button type="button" (click)="modusStarten('vollpruefung')">
+              Voll-Prüfung starten
+            </button>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </main>
+  }
 
-    @if (modus === 'teilpruefung' || modus === 'vollpruefung') {
-      <div class="statusleiste">
-        <p>Richtige Antworten: {{ richtigeAntworten }}</p>
-        <p>Falsche Antworten: {{ falscheAntworten }}</p>
+  <!-- ── Schritt 3: Quiz ────────────────────────────────────────── -->
+  @if (ansicht === 'quiz') {
+    <main class="quiz-seite">
+
+      <div class="quiz-kopf">
+        <button type="button" class="zurueck-btn" (click)="zurModusWahl()">&#8592; Modus wählen</button>
+        <button type="button" class="home-btn" (click)="zurStartseite()">Startseite</button>
+        <span class="modus-badge">{{ modusLabel }} – {{ katalogLabel }}</span>
+        <span class="frage-badge">Frage {{ aktuellerIndex + 1 }} / {{ fragen.length }}</span>
       </div>
-    }
 
-    @if (modus === 'vollpruefung' && !vollpruefungAbgeschlossen) {
-      <div class="vollpruefung-aktionen">
-        <button type="button" class="beenden-button" (click)="vollpruefungBeenden()">
-          Prüfung beenden
-        </button>
-      </div>
-    }
+      @if (modus === 'vollpruefung' && !vollpruefungAbgeschlossen) {
+        <div class="vp-leiste">
+          <span class="vp-info">Beantwortet: {{ anzahlBeantwortet }} / {{ fragen.length }}</span>
+          <button type="button" class="abschliessen-btn" (click)="vollpruefungAbschliessen()">
+            Prüfung abschließen
+          </button>
+        </div>
+      }
 
-    @if (pruefungsMeldung) {
-      <p class="pruefungs-meldung">{{ pruefungsMeldung }}</p>
-    }
+      @if (vollpruefungAbgeschlossen && vollpruefungErgebnis) {
+        <div class="ergebnis-banner" [class.bestanden]="pruefungBestanden" [class.nicht-bestanden]="!pruefungBestanden">
+          @if (pruefungBestanden) {
+            <strong>&#10003; Prüfung bestanden</strong>
+          } @else {
+            <strong>&#10007; Prüfung nicht bestanden</strong>
+          }
+          &nbsp;&ndash; Richtig: {{ vollpruefungErgebnis.richtig }},
+          Falsch: {{ vollpruefungErgebnis.falsch }}
+          (von {{ fragen.length }} Fragen)
+        </div>
+      }
 
-    @if (vollpruefungErgebnisText) {
-      <div class="pruefungs-ergebnis">
-        <p>{{ vollpruefungErgebnisText }}</p>
-        <p>Ergebnis in Prozent: {{ ergebnisProzent() }}%</p>
-      </div>
-    }
-
-    @if (!geladen) {
-      <p>Fragen werden geladen...</p>
-    }
-
-    @if (fehlertext) {
-      <p class="fehler">{{ fehlertext }}</p>
-    }
-
-    @if (geladen && !fehlertext) {
       <div class="layout">
         <div class="liste">
-          <h2>Fragenliste</h2>
-
           <ul>
-            @for (frage of fragen; track frage.id) {
+            @for (frage of fragen; track frage.id; let i = $index) {
               <li>
                 <button
                   type="button"
-                  class="frage-button"
-                  [class.aktiv]="ausgewaehlteFrage?.id === frage.id"
-                  (click)="frageAuswaehlen(frage)">
-                  {{ frage.id }}. {{ frage.frageText }}
+                  class="frage-btn"
+                  [class.aktiv]="i === aktuellerIndex"
+                  (click)="zuIndex(i)">
+                  {{ i + 1 }}. {{ frage.frageText | slice:0:55 }}...
                 </button>
               </li>
             }
@@ -142,12 +136,13 @@
 
         <div class="detail">
           <app-frage-detail
-            [frage]="ausgewaehlteFrage"
+            [frage]="aktuelleFrage"
             [modus]="modus"
-            [frageKorrektBeantwortet]="aktuelleFrageIstKorrektBeantwortet()"
-            [antwortStatusFn]="antwortStatus.bind(this)"
-            [istErsteFrage]="istErsteFrage()"
-            [istLetzteFrage]="istLetzteFrage()"
+            [zeigeLoesung]="zeigeLoesung()"
+            [frageKorrektBeantwortet]="aktuelleFrageKorrekt()"
+            [antwortStatusFn]="antwortStatusBound"
+            [istErsteFrage]="aktuellerIndex === 0"
+            [istLetzteFrage]="aktuellerIndex === fragen.length - 1"
             (antwortGeklickt)="antwortUmschalten($event)"
             (schriftlicheAntwortGeaendert)="schriftlicheAntwortSetzen($event)"
             (pruefenGeklickt)="antwortPruefen()"
@@ -158,10 +153,10 @@
           </app-frage-detail>
         </div>
       </div>
-    }
+
+    </main>
   }
 
-  <footer class="footer">
-    Dortmund 2026
-  </footer>
+  <footer class="fuss">Dortmund 2026</footer>
+
 </div>

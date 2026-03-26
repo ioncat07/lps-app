@@ -1,18 +1,28 @@
 .fragenummer {
-  color: #555;
-  margin-bottom: 8px;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 6px;
 }
 
 .fragetext {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  line-height: 1.5;
+  color: #1e293b;
 }
 
 .hinweis {
   margin-bottom: 12px;
+  padding: 8px 12px;
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 6px;
   color: #92400e;
+  font-size: 14px;
 }
+
+/* ── Multiple-Choice ──────────────────────────────────────── */
 
 .antwortliste {
   list-style: none;
@@ -21,20 +31,25 @@
 }
 
 .antwortliste li {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .antwort-button {
   width: 100%;
   text-align: left;
-  padding: 12px;
-  border: 1px solid #bbb;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
   background: #f8fafc;
   cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: background 0.1s, border-color 0.1s;
 }
 
 .antwort-button:hover {
   background: #eef2ff;
+  border-color: #a5b4fc;
 }
 
 .antwort-button.ausgewaehlt {
@@ -45,80 +60,123 @@
 .antwort-button.richtig {
   background: #dcfce7;
   border-color: #16a34a;
+  color: #14532d;
 }
 
 .antwort-button.falsch {
   background: #fee2e2;
   border-color: #dc2626;
+  color: #7f1d1d;
 }
 
+/* ── Schriftlich ──────────────────────────────────────────── */
+
+.schriftlich-bereich {
+  margin-bottom: 20px;
+}
+
+.schriftlich-bereich label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.schriftlich-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.schriftlich-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.schriftlich-input[readonly] {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.loesung-text {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: #dcfce7;
+  border: 1px solid #16a34a;
+  border-radius: 6px;
+  color: #14532d;
+  font-size: 14px;
+}
+
+/* ── Teil-Prüfung Feedback ────────────────────────────────── */
+
 .pruefbereich {
-  margin: 20px 0;
+  margin: 18px 0;
+}
+
+.pruefen-btn {
+  padding: 10px 18px;
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.pruefen-btn:hover {
+  background: #1e40af;
 }
 
 .ergebnis {
-  margin-top: 12px;
+  margin-top: 10px;
   font-weight: bold;
+  font-size: 15px;
 }
 
 .richtig-text {
-  color: #166534;
+  color: #15803d;
 }
 
 .falsch-text {
   color: #b91c1c;
 }
 
-.erklaerung {
-  margin: 20px 0;
-  padding: 12px;
-  border: 1px solid #ddd;
-  background: #f9fafb;
-}
+/* ── Navigation ───────────────────────────────────────────── */
 
 .navigation {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
 }
 
-.navigation button,
-.pruefbereich button {
-  padding: 10px 14px;
-  border: 1px solid #999;
+.navigation button {
+  padding: 9px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
   background: #f3f4f6;
   cursor: pointer;
+  font-size: 13px;
+  transition: background 0.15s;
 }
 
-.modus-hinweis {
-  margin-bottom: 14px;
-  padding: 10px;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
+.navigation button:hover:not(:disabled) {
+  background: #e2e8f0;
 }
 
-.schriftlich-bereich {
-  margin-bottom: 20px;
+.navigation button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
-.schriftlich-input {
-  width: 100%;
-  margin-top: 8px;
-  padding: 10px;
-  border: 1px solid #bbb;
-}
+/* ── Leer-Zustand ─────────────────────────────────────────── */
 
-.loesung-text {
-  margin-top: 12px;
-  padding: 10px;
-  background: #dcfce7;
-  border: 1px solid #16a34a;
-}
-
-.modus-hinweis {
-  margin-bottom: 14px;
-  padding: 10px;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
+.leer {
+  color: #94a3b8;
+  font-style: italic;
 }

@@ -1,5 +1,4 @@
 @if (frage) {
-  <h2>Frage im Detail</h2>
 
   <p class="fragenummer">Frage {{ frage.id }}</p>
   <p class="fragetext">{{ frage.frageText }}</p>
@@ -8,24 +7,7 @@
     <p class="hinweis"><strong>Hinweis:</strong> Mehrfachauswahl möglich.</p>
   }
 
-  @if (modus === 'lernen') {
-    <p class="modus-hinweis">
-      Lernmodus: Die richtigen Lösungen werden direkt angezeigt.
-    </p>
-  }
-
-  @if (modus === 'teilpruefung') {
-    <p class="modus-hinweis">
-      Teil-Prüfmodus: Wählen oder schreiben Sie die Antwort und prüfen Sie diese direkt.
-    </p>
-  }
-
-  @if (modus === 'vollpruefung') {
-    <p class="modus-hinweis">
-      Voll-Prüfmodus: Das Ergebnis wird erst am Ende angezeigt.
-    </p>
-  }
-
+  <!-- Multiple-Choice-Antworten -->
   @if (frage.typ === 'multiple-choice') {
     <ul class="antwortliste">
       @for (antwort of frage.antworten; track $index) {
@@ -44,6 +26,7 @@
     </ul>
   }
 
+  <!-- Schriftliche Antwort -->
   @if (frage.typ === 'schriftlich') {
     <div class="schriftlich-bereich">
       <label for="antwortEingabe"><strong>Ihre Antwort:</strong></label>
@@ -52,38 +35,40 @@
         type="text"
         class="schriftlich-input"
         [value]="frage.schriftlicheAntwort"
+        [readonly]="frage.beantwortet && modus !== 'lernen'"
         (input)="schriftlicheAntwortGeaendert.emit($any($event.target).value)" />
 
-      @if (modus === 'lernen') {
-        <p class="loesung-text">
-          <strong>Richtige Lösung:</strong> {{ frage.loesung }}
-        </p>
+      @if (zeigeLoesung) {
+        <p class="loesung-text"><strong>Richtige Lösung:</strong> {{ frage.loesung }}</p>
       }
     </div>
   }
 
-  @if (modus === 'teilpruefung' ) {
+  <!-- Teil-Prüfmodus: Prüfen-Button und Feedback -->
+  @if (modus === 'teilpruefung') {
     <div class="pruefbereich">
-      <button type="button" (click)="pruefenGeklickt.emit()">
-        Antwort prüfen
-      </button>
-
-      @if (modus === 'teilpruefung' && frage.beantwortet) {
+      @if (!frage.beantwortet) {
+        <button type="button" class="pruefen-btn" (click)="pruefenGeklickt.emit()">
+          Antwort prüfen
+        </button>
+      } @else {
         @if (frageKorrektBeantwortet) {
-          <p class="ergebnis richtig-text">Die Antwort ist korrekt.</p>
+          <p class="ergebnis richtig-text">&#10003; Die Antwort ist korrekt.</p>
         } @else {
-          <p class="ergebnis falsch-text">Die Antwort ist nicht korrekt.</p>
+          <p class="ergebnis falsch-text">&#10007; Die Antwort ist nicht korrekt.</p>
         }
       }
     </div>
   }
 
+  <!-- Navigation -->
   <div class="navigation">
-    <button type="button" (click)="erste.emit()" [disabled]="istErsteFrage">Erste</button>
-    <button type="button" (click)="vorherige.emit()" [disabled]="istErsteFrage">Vorherige</button>
-    <button type="button" (click)="naechste.emit()" [disabled]="istLetzteFrage">Nächste</button>
-    <button type="button" (click)="letzte.emit()" [disabled]="istLetzteFrage">Letzte</button>
+    <button type="button" (click)="erste.emit()" [disabled]="istErsteFrage">|&#60; Erste</button>
+    <button type="button" (click)="vorherige.emit()" [disabled]="istErsteFrage">&#60; Vorherige</button>
+    <button type="button" (click)="naechste.emit()" [disabled]="istLetzteFrage">Nächste &#62;</button>
+    <button type="button" (click)="letzte.emit()" [disabled]="istLetzteFrage">Letzte &#62;|</button>
   </div>
+
 } @else {
-  <p>Bitte wählen Sie eine Frage aus.</p>
+  <p class="leer">Bitte wählen Sie eine Frage aus der Liste aus.</p>
 }

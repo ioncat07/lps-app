@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Frage, Modus, FilterTyp } from '../frage.model';
+import { Frage, Modus, FilterTyp, Katalog } from '../frage.model';
 import { FragenService } from '../fragen.service';
 import { FrageDetail } from '../frage-detail/frage-detail';
 
@@ -10,315 +10,238 @@ import { FrageDetail } from '../frage-detail/frage-detail';
   templateUrl: './fragen-liste.html',
   styleUrl: './fragen-liste.css'
 })
-export class FragenListe implements OnInit {
-  ansicht: 'start' | 'modus' = 'start';
-  alleFragen: Frage[] = [];
-  fragen: Frage[] = [];
-  ausgewaehlteFrage?: Frage;
-
-  aktuellerIndex = -1;
+export class FragenListe {
+  // Navigations-Zustand
+  ansicht: 'katalog' | 'modus' | 'quiz' = 'katalog';
+  katalog?: Katalog;
   modus: Modus = 'lernen';
   filterTyp: FilterTyp = 'alle';
 
-  geladen = false;
+  // Daten
+  alleFragen: Frage[] = [];
+  fragen: Frage[] = [];
+  aktuellerIndex = 0;
+
+  // Laden
+  ladevorgang = false;
   fehlertext = '';
 
-  falscheAntworten = 0;
-  richtigeAntworten = 0;
-  pruefungBeendet = false;
-  pruefungsMeldung = '';
+  // Voll-Prüfung
   vollpruefungAbgeschlossen = false;
-  vollpruefungErgebnisText = '';
+  vollpruefungErgebnis?: { richtig: number; falsch: number };
+
+  // Gebundene Funktion (verhindert neue Referenz bei jedem Change-Detection-Zyklus)
+  readonly antwortStatusBound = this.antwortStatus.bind(this);
 
   constructor(private fragenService: FragenService) {}
 
-  ngOnInit(): void {
-    this.ladeFragen();
+  get aktuelleFrage(): Frage | undefined {
+    return this.fragen[this.aktuellerIndex];
   }
 
-  ladeFragen(): void {
-    this.fragenService.getFragen().subscribe({
+  // ── Schritt 1: Katalog wählen ────────────────────────────────────
+
+  katalogWaehlen(katalog: Katalog): void {
+    this.katalog = katalog;
+    this.ladevorgang = true;
+    this.fehlertext = '';
+
+    this.fragenService.getFragen(katalog).subscribe({
       next: (daten) => {
         this.alleFragen = daten;
-        this.filterAnwenden('alle');
-        this.geladen = true;
+        this.ladevorgang = false;
+        this.ansicht = 'modus';
       },
-      error: (fehler) => {
-        console.error('Fehler beim Laden der Fragen:', fehler);
+      error: () => {
         this.fehlertext = 'Die Fragen konnten nicht geladen werden.';
-        this.geladen = true;
+        this.ladevorgang = false;
       }
     });
   }
 
-  filterAnwenden(filter: FilterTyp): void {
-    this.filterTyp = filter;
+  // ── Schritt 2: Modus starten ─────────────────────────────────────
 
-    if (filter === 'alle') {
-      this.fragen = [...this.alleFragen];
-    } else {
-      this.fragen = this.alleFragen.filter((frage) => frage.typ === filter);
-    }
-
-    this.zuruecksetzen();
-  }
-
-  setzeModus(modus: Modus): void {
+  modusStarten(modus: Modus, filter: FilterTyp = 'alle'): void {
     this.modus = modus;
-    this.zuruecksetzen();
-  }
-
-  zuruecksetzen(): void {
-    this.pruefungBeendet = false;
-    this.pruefungsMeldung = '';
+    this.filterTyp = filter;
     this.vollpruefungAbgeschlossen = false;
-    this.vollpruefungErgebnisText = '';
-    this.falscheAntworten = 0;
-    this.richtigeAntworten = 0;
+    this.vollpruefungErgebnis = undefined;
 
-    for (const frage of this.fragen) {
-      frage.beantwortet = false;
-      frage.ausgewaehlteAntworten = [];
-      frage.schriftlicheAntwort = '';
+    // Fragenbasis filtern (nur Lernmodus hat Filteroptionen)
+    let basis = filter === 'alle'
+      ? [...this.alleFragen]
+      : this.alleFragen.filter(f => f.typ === filter);
+
+    // Voll-Prüfung: 60 zufällige Fragen auswählen
+    if (modus === 'vollpruefung') {
+      basis = this.mischen(basis).slice(0, 60);
     }
 
-    if (this.fragen.length > 0) {
-      this.aktuellerIndex = 0;
-      this.ausgewaehlteFrage = this.fragen[0];
-    } else {
-      this.aktuellerIndex = -1;
-      this.ausgewaehlteFrage = undefined;
-    }
-  }
+    // Frischen Antwortzustand erzeugen (alleFragen bleibt unverändert)
+    this.fragen = basis.map(f => ({
+      ...f,
+      ausgewaehlteAntworten: [],
+      schriftlicheAntwort: '',
+      beantwortet: false
+    }));
 
-  frageAuswaehlen(frage: Frage): void {
-    this.ausgewaehlteFrage = frage;
-    this.aktuellerIndex = this.fragen.findIndex((f) => f.id === frage.id);
-  }
-
-  ersteFrage(): void {
-    if (this.fragen.length === 0) return;
     this.aktuellerIndex = 0;
-    this.ausgewaehlteFrage = this.fragen[0];
+    this.ansicht = 'quiz';
   }
 
-  vorherigeFrage(): void {
-    if (this.aktuellerIndex > 0) {
-      this.aktuellerIndex--;
-      this.ausgewaehlteFrage = this.fragen[this.aktuellerIndex];
+  private mischen<T>(arr: T[]): T[] {
+    const kopie = [...arr];
+    for (let i = kopie.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [kopie[i], kopie[j]] = [kopie[j], kopie[i]];
+    }
+    return kopie;
+  }
+
+  // ── Navigation ───────────────────────────────────────────────────
+
+  zuIndex(index: number): void {
+    if (index >= 0 && index < this.fragen.length) {
+      this.aktuellerIndex = index;
     }
   }
 
-  naechsteFrage(): void {
-    if (this.aktuellerIndex < this.fragen.length - 1) {
-      this.aktuellerIndex++;
-      this.ausgewaehlteFrage = this.fragen[this.aktuellerIndex];
-    }
-  }
+  ersteFrage(): void    { this.aktuellerIndex = 0; }
+  vorherigeFrage(): void { if (this.aktuellerIndex > 0) this.aktuellerIndex--; }
+  naechsteFrage(): void  { if (this.aktuellerIndex < this.fragen.length - 1) this.aktuellerIndex++; }
+  letzteFrage(): void    { this.aktuellerIndex = this.fragen.length - 1; }
 
-  letzteFrage(): void {
-    if (this.fragen.length === 0) return;
-    this.aktuellerIndex = this.fragen.length - 1;
-    this.ausgewaehlteFrage = this.fragen[this.aktuellerIndex];
-  }
-
-  istErsteFrage(): boolean {
-    return this.aktuellerIndex <= 0;
-  }
-
-  istLetzteFrage(): boolean {
-    return this.aktuellerIndex >= this.fragen.length - 1;
-  }
+  // ── Antworten verwalten ──────────────────────────────────────────
 
   antwortUmschalten(index: number): void {
-    if (!this.ausgewaehlteFrage) return;
-    if (this.ausgewaehlteFrage.typ !== 'multiple-choice') return;
-    if (this.pruefungBeendet || this.vollpruefungAbgeschlossen) return;
-    if (this.ausgewaehlteFrage.beantwortet && this.modus !== 'lernen') return;
+    const frage = this.aktuelleFrage;
+    if (!frage || frage.typ !== 'multiple-choice') return;
+    if (frage.beantwortet && this.modus !== 'lernen') return;
+    if (this.vollpruefungAbgeschlossen) return;
 
-    const antworten = this.ausgewaehlteFrage.ausgewaehlteAntworten;
-    const vorhanden = antworten.includes(index);
-
-    if (vorhanden) {
-      this.ausgewaehlteFrage.ausgewaehlteAntworten = antworten.filter((i) => i !== index);
-    } else {
-      this.ausgewaehlteFrage.ausgewaehlteAntworten = [...antworten, index].sort((a, b) => a - b);
-    }
+    const auswahl = frage.ausgewaehlteAntworten;
+    frage.ausgewaehlteAntworten = auswahl.includes(index)
+      ? auswahl.filter(i => i !== index)
+      : [...auswahl, index].sort((a, b) => a - b);
   }
 
   schriftlicheAntwortSetzen(text: string): void {
-    if (!this.ausgewaehlteFrage) return;
-    if (this.ausgewaehlteFrage.typ !== 'schriftlich') return;
-    if (this.pruefungBeendet || this.vollpruefungAbgeschlossen) return;
-    if (this.ausgewaehlteFrage.beantwortet && this.modus !== 'lernen') return;
+    const frage = this.aktuelleFrage;
+    if (!frage || frage.typ !== 'schriftlich') return;
+    if (frage.beantwortet && this.modus !== 'lernen') return;
+    if (this.vollpruefungAbgeschlossen) return;
 
-    this.ausgewaehlteFrage.schriftlicheAntwort = text;
+    frage.schriftlicheAntwort = text;
   }
 
+  // Teil-Prüfmodus: Antwort direkt prüfen und markieren
   antwortPruefen(): void {
-    if (!this.ausgewaehlteFrage || this.pruefungBeendet || this.vollpruefungAbgeschlossen) {
-      return;
-    }
-
-    if (this.modus === 'teilpruefung') {
-      if (this.ausgewaehlteFrage.beantwortet) return;
-
-      this.ausgewaehlteFrage.beantwortet = true;
-
-      if (this.aktuelleFrageIstKorrektBeantwortet()) {
-        this.richtigeAntworten++;
-      } else {
-        this.falscheAntworten++;
-      }
-    }
-
-    if (this.modus === 'vollpruefung') {
-      if (!this.ausgewaehlteFrage.beantwortet) {
-        this.ausgewaehlteFrage.beantwortet = true;
-
-        // Check if answer is correct or wrong
-        if (!this.aktuelleFrageIstKorrektBeantwortet()) {
-          this.falscheAntworten++;
-
-          // Stop exam if 8 errors reached
-          if (this.falscheAntworten >= 8) {
-            this.vollpruefungAbgeschlossen = true;
-            this.pruefungBeendet = true;
-            this.vollpruefungErgebnisText =
-              `Die Voll-Prüfung wurde beendet. Sie haben 8 Fragen falsch beantwortet.`;
-          }
-        } else {
-          this.richtigeAntworten++;
-        }
-      }
-    }
+    const frage = this.aktuelleFrage;
+    if (!frage || frage.beantwortet || this.modus !== 'teilpruefung') return;
+    frage.beantwortet = true;
   }
 
-  vollpruefungBeenden(): void {
-    if (this.modus !== 'vollpruefung' || this.vollpruefungAbgeschlossen) {
-      return;
-    }
+  // Voll-Prüfmodus: Alle Fragen auswerten, Endergebnis berechnen
+  vollpruefungAbschliessen(): void {
+    if (this.modus !== 'vollpruefung' || this.vollpruefungAbgeschlossen) return;
 
-    let richtige = 0;
-    let falsche = 0;
+    let richtig = 0;
+    let falsch = 0;
 
     for (const frage of this.fragen) {
-      const beantwortet =
-        frage.typ === 'multiple-choice'
-          ? frage.ausgewaehlteAntworten.length > 0
-          : this.normalisiereText(frage.schriftlicheAntwort) !== '';
-
-      if (!beantwortet) {
-        falsche++;
-        continue;
-      }
-
-      if (this.frageIstKorrektBeantwortet(frage)) {
-        richtige++;
-      } else {
-        falsche++;
-      }
-
       frage.beantwortet = true;
+      if (this.frageKorrekt(frage)) {
+        richtig++;
+      } else {
+        falsch++;
+      }
     }
 
-    this.richtigeAntworten = richtige;
-    this.falscheAntworten = falsche;
     this.vollpruefungAbgeschlossen = true;
-    this.pruefungBeendet = true;
-
-    this.vollpruefungErgebnisText =
-      `Die Vollprüfung ist beendet. Richtige Antworten: ${richtige}, falsche Antworten: ${falsche}. Nicht beantwortete Fragen wurden als falsch gewertet.`;
+    this.vollpruefungErgebnis = { richtig, falsch };
   }
 
-  istAntwortAusgewaehlt(index: number): boolean {
-    return this.ausgewaehlteFrage?.ausgewaehlteAntworten.includes(index) ?? false;
+  // Bestanden wenn nicht mehr als 8 Fehler
+  get pruefungBestanden(): boolean {
+    return (this.vollpruefungErgebnis?.falsch ?? 0) <= 8;
   }
 
-  istAntwortRichtig(index: number): boolean {
-    if (!this.ausgewaehlteFrage || this.ausgewaehlteFrage.typ !== 'multiple-choice') return false;
-    return this.ausgewaehlteFrage.richtigeAntworten.includes(index);
-  }
-
-  zeigeLoesung(): boolean {
-    if (!this.ausgewaehlteFrage) return false;
-
-    if (this.modus === 'lernen') return true;
-    if (this.modus === 'teilpruefung') return this.ausgewaehlteFrage.beantwortet;
-    return false;
-  }
+  // ── Antwort-Status für Farbgebung ────────────────────────────────
 
   antwortStatus(index: number): 'neutral' | 'ausgewaehlt' | 'richtig' | 'falsch' {
-    if (!this.ausgewaehlteFrage || this.ausgewaehlteFrage.typ !== 'multiple-choice') {
-      return 'neutral';
-    }
+    const frage = this.aktuelleFrage;
+    if (!frage || frage.typ !== 'multiple-choice') return 'neutral';
 
-    const ausgewaehlt = this.istAntwortAusgewaehlt(index);
-    const richtig = this.istAntwortRichtig(index);
-    const loesungSichtbar = this.zeigeLoesung();
+    const ausgewaehlt = frage.ausgewaehlteAntworten.includes(index);
+    const richtig = frage.richtigeAntworten.includes(index);
+    const sichtbar = this.zeigeLoesung();
 
-    if (loesungSichtbar && richtig) return 'richtig';
-    if (loesungSichtbar && ausgewaehlt && !richtig) return 'falsch';
+    if (sichtbar && richtig) return 'richtig';
+    if (sichtbar && ausgewaehlt && !richtig) return 'falsch';
     if (ausgewaehlt) return 'ausgewaehlt';
-
     return 'neutral';
   }
 
-  aktuelleFrageIstKorrektBeantwortet(): boolean {
-    if (!this.ausgewaehlteFrage) return false;
-    return this.frageIstKorrektBeantwortet(this.ausgewaehlteFrage);
+  zeigeLoesung(): boolean {
+    const frage = this.aktuelleFrage;
+    if (!frage) return false;
+    if (this.modus === 'lernen') return true;
+    if (this.modus === 'teilpruefung') return frage.beantwortet;
+    if (this.modus === 'vollpruefung') return this.vollpruefungAbgeschlossen;
+    return false;
   }
 
-  frageIstKorrektBeantwortet(frage: Frage): boolean {
-    if (frage.typ === 'schriftlich') {
-      return this.normalisiereText(frage.schriftlicheAntwort) ===
-        this.normalisiereText(frage.loesung);
-    }
+  aktuelleFrageKorrekt(): boolean {
+    return this.aktuelleFrage ? this.frageKorrekt(this.aktuelleFrage) : false;
+  }
 
+  private frageKorrekt(frage: Frage): boolean {
+    if (frage.typ === 'schriftlich') {
+      return this.norm(frage.schriftlicheAntwort) === this.norm(frage.loesung);
+    }
     const auswahl = [...frage.ausgewaehlteAntworten].sort((a, b) => a - b);
     const korrekt = [...frage.richtigeAntworten].sort((a, b) => a - b);
-
     return JSON.stringify(auswahl) === JSON.stringify(korrekt);
   }
 
-  anzahlBeantwortet(): number {
-    return this.fragen.filter(frage => {
-      if (frage.typ === 'multiple-choice') {
-        return frage.ausgewaehlteAntworten.length > 0;
-      }
-      return this.normalisiereText(frage.schriftlicheAntwort) !== '';
-    }).length;
-  }
-
-  anzahlVerbleibend(): number {
-    return this.fragen.length - this.anzahlBeantwortet();
-  }
-
-  fortschrittProzent(): number {
-    if (this.fragen.length === 0) return 0;
-    return Math.round((this.anzahlBeantwortet() / this.fragen.length) * 100);
-  }
-
-  ergebnisProzent(): number {
-    if (this.fragen.length === 0) return 0;
-    return Math.round((this.richtigeAntworten / this.fragen.length) * 100);
-  }
-
-  private normalisiereText(text: string): string {
+  private norm(text: string): string {
     return text.trim().toLowerCase().replace(/\s+/g, ' ');
   }
 
-  startModus(modus: Modus, filter: FilterTyp): void {
-  this.filterAnwenden(filter);
-  this.modus = modus;
-  this.ansicht = 'modus';
-  this.zuruecksetzen();
-}
+  // ── Statistik ────────────────────────────────────────────────────
 
-zurStartseite(): void {
-  this.ansicht = 'start';
-  this.modus = 'lernen';
-  this.filterTyp = 'alle';
-  this.zuruecksetzen();
-}
+  get anzahlBeantwortet(): number {
+    return this.fragen.filter(f =>
+      f.typ === 'multiple-choice'
+        ? f.ausgewaehlteAntworten.length > 0
+        : this.norm(f.schriftlicheAntwort) !== ''
+    ).length;
+  }
+
+  // ── Labels ───────────────────────────────────────────────────────
+
+  get katalogLabel(): string {
+    return this.katalog === 'lpic101' ? 'LPIC-101' : 'LPIC-102';
+  }
+
+  get modusLabel(): string {
+    const labels: Record<Modus, string> = {
+      lernen: 'Lernmodus',
+      teilpruefung: 'Teil-Prüfmodus',
+      vollpruefung: 'Voll-Prüfmodus'
+    };
+    return labels[this.modus];
+  }
+
+  // ── Zurück-Navigation ────────────────────────────────────────────
+
+  zurStartseite(): void {
+    this.ansicht = 'katalog';
+    this.alleFragen = [];
+    this.fragen = [];
+  }
+
+  zurModusWahl(): void {
+    this.ansicht = 'modus';
+  }
 }

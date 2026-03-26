@@ -1,3 +1,4 @@
+export type Katalog = 'lpic101' | 'lpic102';
 export type Modus = 'lernen' | 'teilpruefung' | 'vollpruefung';
 export type FrageTyp = 'multiple-choice' | 'schriftlich';
 export type FilterTyp = 'alle' | 'multiple-choice' | 'schriftlich';
@@ -19,7 +20,6 @@ export interface Frage {
   loesung: string;
   richtigeAntworten: number[];
   erklaerung?: string;
-
   ausgewaehlteAntworten: number[];
   schriftlicheAntwort: string;
   beantwortet: boolean;

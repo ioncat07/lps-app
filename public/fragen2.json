@@ -1,0 +1,819 @@
+[
+{
+"id":1,
+"typ":"schriftlich",
+"frageText":"Which command is used to set the hostname of the local system?",
+"loesung":"hostname"
+},
+{
+"id":2,
+"typ":"multiple-choice",
+"frageText":"Which of the following is a valid IPv6 address?",
+"antworten":["2001:db8:0g21::1","2001::db8:4581::1","2001:db8:3241::1","2001%db8%9990%%1","2001.db8.819f..1"],
+"loesung":"C"
+},
+{
+"id":3,
+"typ":"multiple-choice",
+"frageText":"Which command shows the current IP routing table?",
+"antworten":["ifconfig","route","netstat -r","ip route","ipconfig"],
+"loesung":"D"
+},
+{
+"id":4,
+"typ":"multiple-choice",
+"frageText":"Which file contains DNS resolver configuration?",
+"antworten":["/etc/hosts","/etc/resolv.conf","/etc/network","/etc/dns.conf","/etc/hostname"],
+"loesung":"B"
+},
+{
+"id":5,
+"typ":"multiple-choice",
+"frageText":"Which command is used to display open ports?",
+"antworten":["netstat","lsports","portstat","ss","ports"],
+"loesung":"A"
+},
+{
+"id":6,
+"typ":"schriftlich",
+"frageText":"Which command shows current hostname?",
+"loesung":"hostname"
+},
+{
+"id":7,
+"typ":"multiple-choice",
+"frageText":"Which protocol does SSH use?",
+"antworten":["HTTP","FTP","TCP","UDP","SMTP"],
+"loesung":"C"
+},
+{
+"id":8,
+"typ":"multiple-choice",
+"frageText":"Which command tests network connectivity?",
+"antworten":["ping","nettest","iptest","ifconfig","check"],
+"loesung":"A"
+},
+{
+"id":9,
+"typ":"multiple-choice",
+"frageText":"Which file maps hostnames to IP addresses locally?",
+"antworten":["/etc/hosts","/etc/resolv.conf","/etc/network","/etc/ip","/etc/map"],
+"loesung":"A"
+},
+{
+"id":10,
+"typ":"multiple-choice",
+"frageText":"Which command displays network interfaces?",
+"antworten":["ifconfig","interfaces","netshow","ipconfig","showif"],
+"loesung":"A"
+},
+{
+"id":11,
+"typ":"schriftlich",
+"frageText":"Command to show IP addresses?",
+"loesung":"ip"
+},
+{
+"id":12,
+"typ":"multiple-choice",
+"frageText":"Which port is used by HTTP?",
+"antworten":["21","22","80","443","25"],
+"loesung":"C"
+},
+{
+"id":13,
+"typ":"multiple-choice",
+"frageText":"Which port is used by HTTPS?",
+"antworten":["21","22","80","443","25"],
+"loesung":"D"
+},
+{
+"id":14,
+"typ":"multiple-choice",
+"frageText":"Which command shows active connections?",
+"antworten":["netstat","ls","top","ps","who"],
+"loesung":"A"
+},
+{
+"id":15,
+"typ":"multiple-choice",
+"frageText":"Which protocol resolves domain names?",
+"antworten":["DNS","HTTP","FTP","SSH","SMTP"],
+"loesung":"A"
+},
+{
+"id":16,
+"typ":"schriftlich",
+"frageText":"Command to display routing table?",
+"loesung":"ip route"
+},
+{
+"id":17,
+"typ":"multiple-choice",
+"frageText":"Which tool checks DNS records?",
+"antworten":["dig","ping","route","top","ps"],
+"loesung":"A"
+},
+{
+"id":18,
+"typ":"multiple-choice",
+"frageText":"Which command downloads files from web?",
+"antworten":["wget","curl","ftp","download","http"],
+"loesung":"A"
+},
+{
+"id":19,
+"typ":"multiple-choice",
+"frageText":"Which command uploads files?",
+"antworten":["scp","upload","send","ftp","curl"],
+"loesung":"A"
+},
+{
+"id":20,
+"typ":"multiple-choice",
+"frageText":"Which protocol is used for email sending?",
+"antworten":["POP3","IMAP","SMTP","FTP","HTTP"],
+"loesung":"C"
+},
+{
+"id":21,
+"typ":"multiple-choice",
+"frageText":"Which protocol retrieves emails?",
+"antworten":["SMTP","POP3","HTTP","SSH","DNS"],
+"loesung":"B"
+},
+{
+"id":22,
+"typ":"schriftlich",
+"frageText":"Command to test DNS resolution?",
+"loesung":"dig"
+},
+{
+"id":23,
+"typ":"multiple-choice",
+"frageText":"Which command shows listening ports?",
+"antworten":["netstat -l","ls","ps","top","free"],
+"loesung":"A"
+},
+{
+"id":24,
+"typ":"multiple-choice",
+"frageText":"Which service provides DHCP?",
+"antworten":["dhcpd","named","httpd","sshd","ftpd"],
+"loesung":"A"
+},
+{
+"id":25,
+"typ":"multiple-choice",
+"frageText":"Which command copies files over SSH?",
+"antworten":["scp","cp","mv","ftp","wget"],
+"loesung":"A"
+},
+{
+"id":26,
+"typ":"multiple-choice",
+"frageText":"Which protocol is secure remote login?",
+"antworten":["SSH","Telnet","FTP","HTTP","SMTP"],
+"loesung":"A"
+},
+{
+"id":27,
+"typ":"schriftlich",
+"frageText":"Command to list DNS info?",
+"loesung":"dig"
+},
+{
+"id":28,
+"typ":"multiple-choice",
+"frageText":"Which file defines hostname?",
+"antworten":["/etc/hostname","/etc/hosts","/etc/resolv.conf","/etc/network","/etc/ip"],
+"loesung":"A"
+},
+{
+"id":29,
+"typ":"multiple-choice",
+"frageText":"Which command shows MAC address?",
+"antworten":["ip link","ifconfig","route","netstat","ps"],
+"loesung":"A"
+},
+{
+"id":30,
+"typ":"multiple-choice",
+"frageText":"Which command shows open files?",
+"antworten":["lsof","ps","top","netstat","free"],
+"loesung":"A"
+},
+{
+"id":31,
+"typ":"multiple-choice",
+"frageText":"Which command traces route?",
+"antworten":["traceroute","ping","route","trace","netstat"],
+"loesung":"A"
+},
+{
+"id":32,
+"typ":"schriftlich",
+"frageText":"Command to display network interfaces?",
+"loesung":"ip addr"
+},
+{
+"id":33,
+"typ":"multiple-choice",
+"frageText":"Which command checks web server?",
+"antworten":["curl","ping","netstat","route","ip"],
+"loesung":"A"
+},
+{
+"id":34,
+"typ":"multiple-choice",
+"frageText":"Which protocol uses port 22?",
+"antworten":["SSH","FTP","HTTP","SMTP","DNS"],
+"loesung":"A"
+},
+{
+"id":35,
+"typ":"multiple-choice",
+"frageText":"Which protocol uses port 25?",
+"antworten":["SMTP","HTTP","FTP","SSH","DNS"],
+"loesung":"A"
+},
+{
+"id":36,
+"typ":"multiple-choice",
+"frageText":"Which protocol uses port 53?",
+"antworten":["DNS","HTTP","FTP","SSH","SMTP"],
+"loesung":"A"
+},
+{
+"id":37,
+"typ":"multiple-choice",
+"frageText":"Which command checks interface status?",
+"antworten":["ip link","ps","top","route","netstat"],
+"loesung":"A"
+},
+{
+"id":38,
+"typ":"multiple-choice",
+"frageText":"Which command restarts network?",
+"antworten":["systemctl restart network","restart net","net restart","ifrestart","ip restart"],
+"loesung":"A"
+},
+{
+"id":39,
+"typ":"schriftlich",
+"frageText":"Command to download files?",
+"loesung":"wget"
+},
+{
+"id":40,
+"typ":"multiple-choice",
+"frageText":"Which protocol transfers files?",
+"antworten":["FTP","HTTP","SSH","SMTP","DNS"],
+"loesung":"A"
+},
+{
+"id":41,
+"typ":"multiple-choice",
+"frageText":"Which command shows system uptime?",
+"antworten":["uptime","time","date","top","ps"],
+"loesung":"A"
+},
+{
+"id":42,
+"typ":"schriftlich",
+"frageText":"Command to show uptime?",
+"loesung":"uptime"
+},
+{
+"id":43,
+"typ":"multiple-choice",
+"frageText":"Which command displays running processes?",
+"antworten":["ps","ls","cp","mv","cat"],
+"loesung":"A"
+},
+{
+"id":44,
+"typ":"multiple-choice",
+"frageText":"Which command shows disk usage?",
+"antworten":["df","du","ls","mount","free"],
+"loesung":"A"
+},
+{
+"id":45,
+"typ":"multiple-choice",
+"frageText":"Which command shows memory usage?",
+"antworten":["free","df","du","ps","top"],
+"loesung":"A"
+},
+{
+"id":46,
+"typ":"multiple-choice",
+"frageText":"Which command monitors system processes?",
+"antworten":["top","ps","free","df","du"],
+"loesung":"A"
+},
+{
+"id":47,
+"typ":"schriftlich",
+"frageText":"Command to show memory usage?",
+"loesung":"free"
+},
+{
+"id":48,
+"typ":"multiple-choice",
+"frageText":"Which command shows last logins?",
+"antworten":["last","who","w","users","login"],
+"loesung":"A"
+},
+{
+"id":49,
+"typ":"multiple-choice",
+"frageText":"Which command shows current users?",
+"antworten":["who","last","users","w","login"],
+"loesung":"A"
+},
+{
+"id":50,
+"typ":"multiple-choice",
+"frageText":"Which command shows detailed process list?",
+"antworten":["ps aux","top","free","df","du"],
+"loesung":"A"
+},
+{
+"id":51,
+"typ":"multiple-choice",
+"frageText":"Which command kills a process?",
+"antworten":["kill","stop","end","exit","terminate"],
+"loesung":"A"
+},
+{
+"id":52,
+"typ":"schriftlich",
+"frageText":"Command to kill process?",
+"loesung":"kill"
+},
+{
+"id":53,
+"typ":"multiple-choice",
+"frageText":"Which command changes file permissions?",
+"antworten":["chmod","chown","chgrp","perm","setperm"],
+"loesung":"A"
+},
+{
+"id":54,
+"typ":"multiple-choice",
+"frageText":"Which command changes file owner?",
+"antworten":["chown","chmod","chgrp","owner","setowner"],
+"loesung":"A"
+},
+{
+"id":55,
+"typ":"multiple-choice",
+"frageText":"Which command changes group?",
+"antworten":["chgrp","chown","chmod","group","setgroup"],
+"loesung":"A"
+},
+{
+"id":56,
+"typ":"multiple-choice",
+"frageText":"Which command shows file type?",
+"antworten":["file","ls","cat","type","info"],
+"loesung":"A"
+},
+{
+"id":57,
+"typ":"schriftlich",
+"frageText":"Command to display file type?",
+"loesung":"file"
+},
+{
+"id":58,
+"typ":"multiple-choice",
+"frageText":"Which command compresses files?",
+"antworten":["gzip","zip","compress","tar","pack"],
+"loesung":"A"
+},
+{
+"id":59,
+"typ":"multiple-choice",
+"frageText":"Which command archives files?",
+"antworten":["tar","zip","gzip","archive","pack"],
+"loesung":"A"
+},
+{
+"id":60,
+"typ":"multiple-choice",
+"frageText":"Which command extracts tar archive?",
+"antworten":["tar -x","tar -c","tar -z","tar -f","tar -t"],
+"loesung":"A"
+},
+{
+"id":61,
+"typ":"multiple-choice",
+"frageText":"Which command lists directory contents?",
+"antworten":["ls","dir","list","show","cat"],
+"loesung":"A"
+},
+{
+"id":62,
+"typ":"schriftlich",
+"frageText":"Command to list files?",
+"loesung":"ls"
+},
+{
+"id":63,
+"typ":"multiple-choice",
+"frageText":"Which command changes directory?",
+"antworten":["cd","dir","chdir","move","goto"],
+"loesung":"A"
+},
+{
+"id":64,
+"typ":"multiple-choice",
+"frageText":"Which command prints working directory?",
+"antworten":["pwd","dir","ls","path","where"],
+"loesung":"A"
+},
+{
+"id":65,
+"typ":"multiple-choice",
+"frageText":"Which command copies files?",
+"antworten":["cp","copy","mv","duplicate","clone"],
+"loesung":"A"
+},
+{
+"id":66,
+"typ":"multiple-choice",
+"frageText":"Which command moves files?",
+"antworten":["mv","move","cp","rename","transfer"],
+"loesung":"A"
+},
+{
+"id":67,
+"typ":"multiple-choice",
+"frageText":"Which command deletes files?",
+"antworten":["rm","delete","erase","remove","del"],
+"loesung":"A"
+},
+{
+"id":68,
+"typ":"schriftlich",
+"frageText":"Command to delete file?",
+"loesung":"rm"
+},
+{
+"id":69,
+"typ":"multiple-choice",
+"frageText":"Which command creates directory?",
+"antworten":["mkdir","mk","dir","create","newdir"],
+"loesung":"A"
+},
+{
+"id":70,
+"typ":"multiple-choice",
+"frageText":"Which command removes directory?",
+"antworten":["rmdir","rm","del","delete","remove"],
+"loesung":"A"
+},
+{
+"id":71,
+"typ":"multiple-choice",
+"frageText":"Which command displays file content?",
+"antworten":["cat","view","show","display","open"],
+"loesung":"A"
+},
+{
+"id":72,
+"typ":"multiple-choice",
+"frageText":"Which command searches text?",
+"antworten":["grep","find","search","look","scan"],
+"loesung":"A"
+},
+{
+"id":73,
+"typ":"schriftlich",
+"frageText":"Command to search text?",
+"loesung":"grep"
+},
+{
+"id":74,
+"typ":"multiple-choice",
+"frageText":"Which command finds files?",
+"antworten":["find","search","grep","locate","scan"],
+"loesung":"A"
+},
+{
+"id":75,
+"typ":"multiple-choice",
+"frageText":"Which command sorts lines?",
+"antworten":["sort","order","arrange","list","rank"],
+"loesung":"A"
+},
+{
+"id":76,
+"typ":"multiple-choice",
+"frageText":"Which command counts lines?",
+"antworten":["wc","count","lines","num","calc"],
+"loesung":"A"
+},
+{
+"id":77,
+"typ":"multiple-choice",
+"frageText":"Which command shows first lines?",
+"antworten":["head","start","top","first","begin"],
+"loesung":"A"
+},
+{
+"id":78,
+"typ":"multiple-choice",
+"frageText":"Which command shows last lines?",
+"antworten":["tail","end","last","bottom","finish"],
+"loesung":"A"
+},
+{
+"id":79,
+"typ":"schriftlich",
+"frageText":"Command to show last lines?",
+"loesung":"tail"
+},
+{
+"id":80,
+"typ":"multiple-choice",
+"frageText":"Which command concatenates files?",
+"antworten":["cat","join","merge","combine","union"],
+"loesung":"A"
+},
+{
+"id":81,
+"typ":"multiple-choice",
+"frageText":"Which command displays environment variables?",
+"antworten":["env","set","export","vars","printenv"],
+"loesung":"A"
+},
+{
+"id":82,
+"typ":"schriftlich",
+"frageText":"Command to display environment variables?",
+"loesung":"env"
+},
+{
+"id":83,
+"typ":"multiple-choice",
+"frageText":"Which command sets environment variable?",
+"antworten":["export","env","set","vars","assign"],
+"loesung":"A"
+},
+{
+"id":84,
+"typ":"multiple-choice",
+"frageText":"Which shell is default in Linux?",
+"antworten":["bash","sh","zsh","fish","dash"],
+"loesung":"A"
+},
+{
+"id":85,
+"typ":"multiple-choice",
+"frageText":"Which command shows shell?",
+"antworten":["echo $SHELL","shell","show shell","env","print"],
+"loesung":"A"
+},
+{
+"id":86,
+"typ":"multiple-choice",
+"frageText":"Which file contains user shell config?",
+"antworten":[".bashrc",".profile",".bash_profile",".config","shellrc"],
+"loesung":"A"
+},
+{
+"id":87,
+"typ":"schriftlich",
+"frageText":"Command to display shell?",
+"loesung":"echo $SHELL"
+},
+{
+"id":88,
+"typ":"multiple-choice",
+"frageText":"Which command schedules tasks?",
+"antworten":["cron","at","schedule","task","plan"],
+"loesung":"A"
+},
+{
+"id":89,
+"typ":"multiple-choice",
+"frageText":"Which file contains cron jobs?",
+"antworten":["crontab","cronfile","jobs","tasks","schedule"],
+"loesung":"A"
+},
+{
+"id":90,
+"typ":"multiple-choice",
+"frageText":"Which command edits cron jobs?",
+"antworten":["crontab -e","cron edit","editcron","schedule","jobs"],
+"loesung":"A"
+},
+{
+"id":91,
+"typ":"multiple-choice",
+"frageText":"Which command runs job once?",
+"antworten":["at","cron","run","job","once"],
+"loesung":"A"
+},
+{
+"id":92,
+"typ":"schriftlich",
+"frageText":"Command to edit cron?",
+"loesung":"crontab -e"
+},
+{
+"id":93,
+"typ":"multiple-choice",
+"frageText":"Which command shows system logs?",
+"antworten":["journalctl","log","syslog","dmesg","logs"],
+"loesung":"A"
+},
+{
+"id":94,
+"typ":"multiple-choice",
+"frageText":"Which command shows kernel logs?",
+"antworten":["dmesg","journalctl","log","syslog","klog"],
+"loesung":"A"
+},
+{
+"id":95,
+"typ":"multiple-choice",
+"frageText":"Which command manages services?",
+"antworten":["systemctl","service","init","daemon","control"],
+"loesung":"A"
+},
+{
+"id":96,
+"typ":"multiple-choice",
+"frageText":"Which command starts service?",
+"antworten":["systemctl start","service start","start","run","launch"],
+"loesung":"A"
+},
+{
+"id":97,
+"typ":"schriftlich",
+"frageText":"Command to start service?",
+"loesung":"systemctl start"
+},
+{
+"id":98,
+"typ":"multiple-choice",
+"frageText":"Which command stops service?",
+"antworten":["systemctl stop","service stop","stop","end","kill"],
+"loesung":"A"
+},
+{
+"id":99,
+"typ":"multiple-choice",
+"frageText":"Which command enables service?",
+"antworten":["systemctl enable","service enable","enable","start","boot"],
+"loesung":"A"
+},
+{
+"id":100,
+"typ":"multiple-choice",
+"frageText":"Which command disables service?",
+"antworten":["systemctl disable","service disable","disable","stop","boot"],
+"loesung":"A"
+},
+{
+"id":101,
+"typ":"multiple-choice",
+"frageText":"Which command shows service status?",
+"antworten":["systemctl status","status","service status","check","info"],
+"loesung":"A"
+},
+{
+"id":102,
+"typ":"schriftlich",
+"frageText":"Command to check service status?",
+"loesung":"systemctl status"
+},
+{
+"id":103,
+"typ":"multiple-choice",
+"frageText":"Which command lists services?",
+"antworten":["systemctl list-units","list","services","show","units"],
+"loesung":"A"
+},
+{
+"id":104,
+"typ":"multiple-choice",
+"frageText":"Which command shows boot logs?",
+"antworten":["journalctl -b","bootlog","logboot","dmesg","journal"],
+"loesung":"A"
+},
+{
+"id":105,
+"typ":"multiple-choice",
+"frageText":"Which command changes system time?",
+"antworten":["date","time","clock","settime","timectl"],
+"loesung":"A"
+},
+{
+"id":106,
+"typ":"multiple-choice",
+"frageText":"Which command syncs time?",
+"antworten":["ntpdate","timedatectl","sync","time","ntp"],
+"loesung":"A"
+},
+{
+"id":107,
+"typ":"schriftlich",
+"frageText":"Command to sync time?",
+"loesung":"ntpdate"
+},
+{
+"id":108,
+"typ":"multiple-choice",
+"frageText":"Which command shows current date?",
+"antworten":["date","time","now","clock","today"],
+"loesung":"A"
+},
+{
+"id":109,
+"typ":"multiple-choice",
+"frageText":"Which command shuts down system?",
+"antworten":["shutdown","poweroff","halt","stop","end"],
+"loesung":"A"
+},
+{
+"id":110,
+"typ":"multiple-choice",
+"frageText":"Which command reboots system?",
+"antworten":["reboot","restart","reload","boot","reset"],
+"loesung":"A"
+},
+{
+"id":111,
+"typ":"multiple-choice",
+"frageText":"Which command shows logged users?",
+"antworten":["who","users","w","last","login"],
+"loesung":"A"
+},
+{
+"id":112,
+"typ":"multiple-choice",
+"frageText":"Which command displays login history?",
+"antworten":["last","who","users","login","history"],
+"loesung":"A"
+},
+{
+"id":113,
+"typ":"schriftlich",
+"frageText":"Command to show login history?",
+"loesung":"last"
+},
+{
+"id":114,
+"typ":"multiple-choice",
+"frageText":"Which command locks user?",
+"antworten":["passwd -l","lock","userlock","disable","freeze"],
+"loesung":"A"
+},
+{
+"id":115,
+"typ":"multiple-choice",
+"frageText":"Which command unlocks user?",
+"antworten":["passwd -u","unlock","userunlock","enable","unfreeze"],
+"loesung":"A"
+},
+{
+"id":116,
+"typ":"multiple-choice",
+"frageText":"Which command adds user?",
+"antworten":["useradd","adduser","createuser","newuser","mkuser"],
+"loesung":"A"
+},
+{
+"id":117,
+"typ":"multiple-choice",
+"frageText":"Which command deletes user?",
+"antworten":["userdel","deluser","removeuser","delete","rmuser"],
+"loesung":"A"
+},
+{
+"id":118,
+"typ":"multiple-choice",
+"frageText":"Which command changes password?",
+"antworten":["passwd","password","setpass","changepass","pw"],
+"loesung":"A"
+},
+{
+"id":119,
+"typ":"multiple-choice",
+"frageText":"Which command shows groups?",
+"antworten":["groups","group","listgroups","showgroups","grp"],
+"loesung":"A"
+},
+{
+"id":120,
+"typ":"multiple-choice",
+"frageText":"Which command shows user id?",
+"antworten":["id","userid","whoami","user","info"],
+"loesung":"A"
+}
+]

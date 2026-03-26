@@ -1,43 +1,161 @@
+/* ── Layout ───────────────────────────────────────────────── */
+
 .seite {
-  width: 80%;
+  width: 90%;
   max-width: 1400px;
   margin: 0 auto;
+  padding-bottom: 40px;
 }
 
-.main-content {
+.kopf h1 {
+  font-size: 24px;
+  margin: 20px 0 16px;
+  color: #1e3a5f;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+}
+
+/* ── Startseite ───────────────────────────────────────────── */
+
+.startseite {
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.startseite h2 {
+  margin-top: 0;
+  color: #1e3a5f;
+}
+
+.katalog-reihe {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.katalog-karte {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 24px;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.katalog-karte:hover:not(:disabled) {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.15);
+}
+
+.katalog-karte:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.katalog-titel {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1d4ed8;
+}
+
+.katalog-sub {
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* ── Modus-Wahl ───────────────────────────────────────────── */
+
+.modus-seite {
+  margin-top: 16px;
+}
+
+.modus-seite h2 {
+  color: #1e3a5f;
+}
+
+.modus-karten {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.modus-karte {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px;
+  background: #f8fafc;
+}
+
+.lernen-karte     { border-top: 4px solid #22c55e; }
+.teilpruefung-karte { border-top: 4px solid #f59e0b; }
+.vollpruefung-karte { border-top: 4px solid #ef4444; }
+
+.modus-karte h3 {
+  margin-top: 0;
+  color: #1e3a5f;
+}
+
+.modus-karte p {
+  font-size: 14px;
+  color: #475569;
+  margin-bottom: 14px;
+}
+
+.modus-optionen {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modus-optionen button {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.modus-optionen button:hover {
+  background: #e2e8f0;
+}
+
+/* ── Quiz ─────────────────────────────────────────────────── */
+
+.quiz-seite {
+  margin-top: 16px;
+}
+
+.quiz-kopf {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
 }
 
 .layout {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 20px;
+  gap: 16px;
   align-items: start;
 }
 
-.liste,
-.detail {
-  border: 1px solid #ccc;
-  padding: 16px;
-  background: #fff;
-  box-sizing: border-box;
-}
-
 .liste {
-  overflow-y: auto;
-  height: 100%;
-  max-height: 500px;
-  border: 2px solid #cbd5f5;
-  border-radius: 10px;
-  padding: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 12px;
   background: #ffffff;
-
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-.detail {
+  max-height: 620px;
   overflow-y: auto;
-  height: 100%;
 }
 
 .liste ul {
@@ -47,163 +165,158 @@
 }
 
 .liste li {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-.frage-button {
+.frage-btn {
   width: 100%;
   text-align: left;
-  padding: 10px;
-  border: 1px solid #bbb;
-  background: #f9f9f9;
+  padding: 9px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  background: #f9fafb;
   cursor: pointer;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
-.frage-button:hover {
+.frage-btn:hover {
   background: #f1f5f9;
 }
 
-.frage-button.aktiv {
-  background: #e0f2fe;
-  border-color: #0284c7;
-}
-.footer {
-  margin-top: 40px;
-  padding: 12px;
-  text-align: center;
-  border-top: 1px solid #ccc;
-  color: #64748b;
-  font-size: 14px;
+.frage-btn.aktiv {
+  background: #dbeafe;
+  border-color: #3b82f6;
+  font-weight: 600;
 }
 
+.detail {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 20px;
+  background: #ffffff;
+}
 
-.beenden-button {
-  margin-left: 10px;
+/* ── Vollprüfung Leiste ───────────────────────────────────── */
+
+.vp-leiste {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px 16px;
+  margin-bottom: 14px;
+  background: #fef9c3;
+  border: 1px solid #fbbf24;
+  border-radius: 8px;
+}
 
-  background: #dc2626;
+.vp-info {
+  font-size: 14px;
+  color: #92400e;
+}
+
+.abschliessen-btn {
+  padding: 9px 18px;
+  background: #1d4ed8;
   color: white;
   border: none;
   border-radius: 6px;
-
   font-weight: bold;
   cursor: pointer;
 }
 
-.beenden-button:hover {
-  background: #b91c1c;
+.abschliessen-btn:hover {
+  background: #1e40af;
 }
 
+/* ── Ergebnis-Banner ──────────────────────────────────────── */
 
-.modus-leiste button {
-  padding: 8px 14px;
-  border: 1px solid #cbd5e1;
-  background: #f8fafc;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-/* hover */
-.modus-leiste button:hover {
-  background: #e2e8f0;
-}
-
-/* ACTIV (cel important) */
-.modus-leiste button.aktiv {
-  background: #dbeafe;
-  color: #1e40af;
-  border-color: #93c5fd;
-}
-
-
-
-
-
-.filter-leiste button {
-  padding: 8px 14px;
-  border: 1px solid #cbd5e1;
-  background: #f8fafc;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-right: 8px;
-}
-
-/* hover */
-.filter-leiste button:hover {
-  background: #e2e8f0;
-}
-
-/* ACTIV (important) */
-.filter-leiste button.aktiv {
-  background: linear-gradient(135deg, #1d4ed8, #2563eb);  /* albastru mai inchis */
-  color: white;
-  border-color: #1e40af;
-}
-
-
-
-.startseite {
-  border: 1px solid #cbd5e1;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.start-gruppe {
-  margin-top: 20px;
-  padding: 16px;
-  border: 1px solid #e2e8f0;
+.ergebnis-banner {
+  padding: 14px 18px;
   border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+.ergebnis-banner.bestanden {
+  background: #dcfce7;
+  border: 1px solid #16a34a;
+  color: #14532d;
+}
+
+.ergebnis-banner.nicht-bestanden {
+  background: #fee2e2;
+  border: 1px solid #dc2626;
+  color: #7f1d1d;
+}
+
+/* ── Gemeinsame Buttons & Badges ──────────────────────────── */
+
+.zurueck-btn,
+.home-btn {
+  padding: 8px 14px;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
   background: #f8fafc;
-}
-
-.start-gruppe h3 {
-  margin-top: 0;
-}
-
-.start-gruppe button {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px 14px;
-  text-align: left;
-  border: 1px solid #cbd5e1;
-  background: white;
   cursor: pointer;
 }
 
-.start-gruppe button:hover {
+.zurueck-btn:hover,
+.home-btn:hover {
   background: #e2e8f0;
 }
 
-.kopfzeile-modus {
+.katalog-badge,
+.modus-badge {
+  padding: 6px 12px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #93c5fd;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.frage-badge {
+  margin-left: auto;
+  padding: 6px 12px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* ── Navigation ───────────────────────────────────────────── */
+
+.nav-zeile {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
 }
 
-.home-button {
-  width: 42px;
-  height: 42px;
-  border: 1px solid #94a3b8;
-  background: #f8fafc;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 22px;
-  font-weight: bold;
+/* ── Footer ───────────────────────────────────────────────── */
+
+.fuss {
+  margin-top: 40px;
+  padding: 12px;
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 13px;
 }
 
-.home-button:hover {
-  background: #e2e8f0;
+/* ── Misc ─────────────────────────────────────────────────── */
+
+.laden {
+  color: #3b82f6;
+  font-style: italic;
 }
 
-.modus-anzeige {
-  padding: 10px 14px;
-  border: 1px solid #93c5fd;
-  background: #dbeafe;
-  color: #1d4ed8;
-  border-radius: 8px;
-  font-weight: bold;
+.fehler {
+  color: #dc2626;
+  background: #fee2e2;
+  padding: 10px;
+  border-radius: 6px;
 }

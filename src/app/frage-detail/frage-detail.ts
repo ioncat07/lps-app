@@ -11,6 +11,7 @@ import { Frage, Modus } from '../frage.model';
 export class FrageDetail {
   @Input() frage?: Frage;
   @Input() modus: Modus = 'lernen';
+  @Input() zeigeLoesung = false;
   @Input() frageKorrektBeantwortet = false;
   @Input() istErsteFrage = false;
   @Input() istLetzteFrage = false;
