@@ -1,59 +1,59 @@
-# LpsApp
+# LPS – Lern- & Prüf-Simulator
+Eine browserbasierte Angular-Anwendung zur Vorbereitung auf LPIC-1-Zertifizierungsprüfungen (Linux Professional Institute Certification).
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.5.
+# Beschreibung
+Der LPS ermöglicht eine strukturierte Prüfungsvorbereitung durch drei unterschiedliche Modi:
 
-## Development server
+# Lernmodus – Richtige Antworten werden sofort angezeigt, ohne Zeitdruck
+Teil-Prüfmodus – Direktes Feedback nach jeder beantworteten Frage
+Voll-Prüfmodus – 60 zufällige Fragen, Ergebnis erst am Ende (bestanden bei ≤ 8 Fehlern)
 
-To start a local development server, run:
+# Die Anwendung enthält zwei Fragenkataloge:
+KatalogInhaltFragenLPIC-101Linux Administrator – Teil 1120 FragenLPIC-102Linux Administrator – Teil 2120 Fragen
 
-```bash
-ng serve
-```
+# Installation & Start
+Voraussetzungen: Node.js (LTS) und npm müssen installiert sein.
+bash# Abhängigkeiten installieren
+npm install
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+# Entwicklungsserver starten
+npm start
+Die Anwendung ist anschließend unter http://localhost:4200 erreichbar.
+bash# Produktions-Build erstellen
+npm run build
 
-## Code scaffolding
+# Unit-Tests ausführen
+npm test
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+🗂️ Projektstruktur
+src/
+├── app/
+│   ├── frage-detail/         # Dumb Component – Darstellung einer Frage
+│   │   ├── frage-detail.ts
+│   │   ├── frage-detail.html
+│   │   └── frage-detail.css
+│   ├── fragen-liste/         # Smart Component – Steuerung & Logik
+│   │   ├── fragen-liste.ts
+│   │   ├── fragen-liste.html
+│   │   └── fragen-liste.css
+│   ├── frage.model.ts        # TypeScript Interfaces & Type Aliases
+│   ├── fragen.service.ts     # HTTP-Datenabruf & Datentransformation
+│   └── app.ts                # Root-Komponente
+public/
+├── fragen1.json              # Fragenkatalog LPIC-101 (120 Fragen)
+└── fragen2.json              # Fragenkatalog LPIC-102 (120 Fragen)
 
-```bash
-ng generate component component-name
-```
+# Technologien
+TechnologieVersionAngular21.0.5TypeScript~5.9.2RxJS~7.8.0Vitest4.0.8Node.js / npmnpm 11.6.2
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+# Funktionsweise
+Die Anwendung folgt einem dreistufigen Ablauf:
+Katalog wählen  →  Modus wählen  →  Quiz
+(LPIC-101/102)     (Lernen/Teil-/     (Fragen beantworten)
+                    Vollprüfung)
+Architektur: Smart/Dumb-Component-Pattern
 
-```bash
-ng generate --help
-```
+FragenListe – hält den gesamten Anwendungszustand und die Geschäftslogik
+FrageDetail – reine Präsentationskomponente (@Input / @Output)
+FragenService – lädt die JSON-Kataloge per HTTP und transformiert die Rohdaten
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
