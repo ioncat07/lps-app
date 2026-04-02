@@ -1,4 +1,4 @@
-# LPS – Lern- & Prüf-Simulator
+## LPS – Lern- & Prüf-Simulator
 Eine browserbasierte Angular-Anwendung zur Vorbereitung auf LPIC-1-Zertifizierungsprüfungen (Linux Professional Institute Certification).
 
 # Beschreibung
