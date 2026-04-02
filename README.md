@@ -1,28 +1,28 @@
 ## LPS – Lern- & Prüf-Simulator
 Eine browserbasierte Angular-Anwendung zur Vorbereitung auf LPIC-1-Zertifizierungsprüfungen (Linux Professional Institute Certification).
 
-# Beschreibung
+## Beschreibung
 Der LPS ermöglicht eine strukturierte Prüfungsvorbereitung durch drei unterschiedliche Modi:
 
-# Lernmodus – Richtige Antworten werden sofort angezeigt, ohne Zeitdruck
+## Lernmodus – Richtige Antworten werden sofort angezeigt, ohne Zeitdruck
 Teil-Prüfmodus – Direktes Feedback nach jeder beantworteten Frage
 Voll-Prüfmodus – 60 zufällige Fragen, Ergebnis erst am Ende (bestanden bei ≤ 8 Fehlern)
 
-# Die Anwendung enthält zwei Fragenkataloge:
+## Die Anwendung enthält zwei Fragenkataloge:
 KatalogInhaltFragenLPIC-101Linux Administrator – Teil 1120 FragenLPIC-102Linux Administrator – Teil 2120 Fragen
 
-# Installation & Start
+## Installation & Start
 Voraussetzungen: Node.js (LTS) und npm müssen installiert sein.
 bash# Abhängigkeiten installieren
 npm install
 
-# Entwicklungsserver starten
+## Entwicklungsserver starten
 npm start
 Die Anwendung ist anschließend unter http://localhost:4200 erreichbar.
 bash# Produktions-Build erstellen
 npm run build
 
-# Unit-Tests ausführen
+## Unit-Tests ausführen
 npm test
 
 🗂️ Projektstruktur
@@ -43,10 +43,10 @@ public/
 ├── fragen1.json              # Fragenkatalog LPIC-101 (120 Fragen)
 └── fragen2.json              # Fragenkatalog LPIC-102 (120 Fragen)
 
-# Technologien
+## Technologien
 TechnologieVersionAngular21.0.5TypeScript~5.9.2RxJS~7.8.0Vitest4.0.8Node.js / npmnpm 11.6.2
 
-# Funktionsweise
+## Funktionsweise
 Die Anwendung folgt einem dreistufigen Ablauf:
 Katalog wählen  →  Modus wählen  →  Quiz
 (LPIC-101/102)     (Lernen/Teil-/     (Fragen beantworten)
